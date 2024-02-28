@@ -1,6 +1,6 @@
 package fr.epsi.poec24.mspr_crm_ada.domain;
 
-import net.sf.jsqlparser.util.validation.metadata.DatabaseException;
+
 
 import java.io.Serializable;
 import java.util.Date;

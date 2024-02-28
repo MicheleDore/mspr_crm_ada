@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" data-th-href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
+
+        <title>Démo : Liste des produits</title>
+    </head>
+    <body>
+        <header>
+            <h1 id="nav-title">
+                <a href="/">ACME</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="/produits">Fournisseurs</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>La liste des produits</h1>
+            <section>
+                <a class="action" href="produits/creer">Ajouter un produits</a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Date création</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-th-each="item : ${produits}">
+                            <td data-th-text="${item.idProduit}"></td>
+                            <td data-th-text="${item.nomProduit}"></td>
+                            <td data-th-text="${item.prix}"></td>
+                            <td data-th-text="${item.dateCreationProduit}"></td>
+                            <td>
+                                <a data-th-href="@{/produits/{id}/edition(id=${item.idProduit})}">Modifier</a>
+                                <a data-th-href="@{/produits/{id}/suppression(id=${item.idProduit})}">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>
