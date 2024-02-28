@@ -22,18 +22,27 @@
             </nav>
         </header>
         <main>
-            <h1>Création d'un nouveau fournisseur</h1>
-            <form data-th-action="@{/fournisseurs/{id}/edition(id=${fournisseur.id})}"
-                  data-th-object="${fournisseur}" method="post">
-                <ul class="flex-outer">
-                    <li>
-                        <label for="inputRaisonSociale">Raison sociale : </label>
-                        <input type="text" id="inputRaisonSociale" required data-th-field="*{raisonSociale}"/>
-                    </li>
-                    <li>
-                        <button type="submit">Enregistrer</button>
-                    </li>
-                </ul>
+            <h1>Modification du produit</h1>
+            <form action="/produits/{id}/edition" method="post">
+                <input type="hidden" name="idProduit" value="${produits.idProduit}"/> <!-- Include a hidden field for product ID -->
+
+                <label for="nomProduit">Nom du produit:</label>
+                <input type="text" id="nomProduit" name="nomProduit" value="${produits.nomProduit}" required/>
+                <br/>
+
+                <label for="prix">Prix:</label>
+                <input type="number" id="prix" name="prix" value="${produits.prix}" required/>
+                <br/>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description">${produits.description}</textarea>
+                <br/>
+
+                <label for="dateCreationProduit">Date de création:</label>
+                <input type="datetime-local" id="dateCreationProduit" name="dateCreationProduit" value="${produits.dateCreationProduit}" required/>
+                <br/>
+
+                <button type="submit">Modifier Produit</button>
             </form>
         </main>
         <footer>

@@ -24,12 +24,13 @@ public class ProduitController {
 
         List<Produit> mesProduits = service.findAll();
         model.addAttribute("produits", mesProduits);
+        System.out.println(mesProduits);
         return "view-produits-list";
     }
     @GetMapping("/creer")
     public String creerProduit(Model model) {
         model.addAttribute("produits", new Produit());
-        return "view-produits-form-creation";
+        return "view-produit-form-creation";
     }
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
@@ -39,7 +40,7 @@ public class ProduitController {
     @GetMapping("/{id}/edition")
     public String modifierproduits(@PathVariable int id, Model model) {
         model.addAttribute("produits", service.findById(id));
-        return "view-produits-form-edition";
+        return "view-produit-form-edition";
     }
     @PostMapping("/{id}/edition")
     public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {

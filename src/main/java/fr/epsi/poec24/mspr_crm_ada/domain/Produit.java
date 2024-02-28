@@ -1,11 +1,8 @@
 package fr.epsi.poec24.mspr_crm_ada.domain;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,19 +11,19 @@ public class Produit implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Produit")
+    @Column(name="ID_Produit")
     private int idProduit;
 
-    @Column(name = "NomProduit")
+    @Column(name="NomProduit")
     private String nomProduit;
 
-    @Column(name = "Prix")
+    @Column(name="Prix")
     private int prix;
 
-    @Column(name = "Description")
+    @Column(name="Description")
     private String description;
 
-    @Column(name = "DateCreationProduit")
+    @Column(name="DateCreationProduit")
     private LocalDateTime dateCreationProduit;
 
 
