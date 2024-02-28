@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class Produit implements Serializable{
     private String description;
 
     @Column(name = "DateCreationProduit")
-    private Date dateCreationProduit;
+    private LocalDateTime dateCreationProduit;
 
 
     //CONSTRUCTOR
@@ -42,7 +43,7 @@ public class Produit implements Serializable{
         this.prix = prix;
     }
 
-    public Produit(int idProduit, String nomProduit, int prix, String description, Date dateCreationProduit) {
+    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
@@ -50,14 +51,14 @@ public class Produit implements Serializable{
         this.dateCreationProduit = dateCreationProduit;
     }
 
-    public Produit(int idProduit, String nomProduit, int prix, Date dateCreationProduit) {
+    public Produit(int idProduit, String nomProduit, int prix, LocalDateTime dateCreationProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
         this.dateCreationProduit = dateCreationProduit;
     }
 
-    public Produit(int idProduit, String nomProduit, Date dateCreationProduit) {
+    public Produit(int idProduit, String nomProduit, LocalDateTime dateCreationProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.dateCreationProduit = dateCreationProduit;
@@ -76,8 +77,8 @@ public class Produit implements Serializable{
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
 
-    public Date getDateCreationProduit() {return dateCreationProduit;}
-    public void setDateCreationProduit(Date dateCreationProduit) {this.dateCreationProduit = dateCreationProduit;}
+    public LocalDateTime getDateCreationProduit() {return dateCreationProduit;}
+    public void setDateCreationProduit(LocalDateTime dateCreationProduit) {this.dateCreationProduit = dateCreationProduit;}
 
     @Override
     public boolean equals(Object o) {
