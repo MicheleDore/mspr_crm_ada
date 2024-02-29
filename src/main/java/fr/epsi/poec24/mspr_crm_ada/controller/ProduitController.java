@@ -40,6 +40,7 @@ public class ProduitController {
     @GetMapping("/{id}/edition")
     public String modifierproduits(@PathVariable int id, Model model) {
         model.addAttribute("produits", service.findById(id));
+        System.out.println(model);
         return "view-produit-form-edition";
     }
     @PostMapping("/{id}/edition")

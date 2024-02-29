@@ -10,36 +10,24 @@
         <title>Démo : Liste des fournisseurs</title>
     </head>
     <body>
-        <header>
-            <h1 id="nav-title">
-                <a href="/">Démo : Home - E-Commerce</a>
-            </h1>
-            <nav>
-                <ul>
-                    <li><a href="/fournisseurs">Fournisseurs</a></li>
-                    <li><a href="/articles">Articles</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav th:replace="~{fragments/navbar}"></nav>
         <main>
             <h1>Modification du produit</h1>
-            <form action="/produits/{id}/edition" method="post">
-                <input type="hidden" name="idProduit" value="${produits.idProduit}"/> <!-- Include a hidden field for product ID -->
-
+            <form data-th-action="@{/produits/{id}/edition(id=${produits.idProduit})}" data-th-object="${produits}" method="post">
+                <input type="hidden" name="idProduit" th:value="${produits.idProduit}"/> <!-- Include a hidden field for product ID -->
                 <label for="nomProduit">Nom du produit:</label>
-                <input type="text" id="nomProduit" name="nomProduit" value="${produits.nomProduit}" required/>
+                <input type="text" id="nomProduit" name="nomProduit" th:value="${produits.nomProduit}" required/>
                 <br/>
-
                 <label for="prix">Prix:</label>
-                <input type="number" id="prix" name="prix" value="${produits.prix}" required/>
+                <input type="number" id="prix" name="prix" th:value="${produits.prix}" required/>
                 <br/>
 
                 <label for="description">Description:</label>
-                <textarea id="description" name="description">${produits.description}</textarea>
+                <input size="100" id="description" name="description" th:value="${produits.description}" required/>
                 <br/>
 
                 <label for="dateCreationProduit">Date de création:</label>
-                <input type="datetime-local" id="dateCreationProduit" name="dateCreationProduit" value="${produits.dateCreationProduit}" required/>
+                <input type="datetime-local" id="dateCreationProduit" name="dateCreationProduit" th:value="${produits.dateCreationProduit}" required/>
                 <br/>
 
                 <button type="submit">Modifier Produit</button>
