@@ -3,6 +3,7 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+
 public class commandes implements Serializable{
 
     private int idCommande;
