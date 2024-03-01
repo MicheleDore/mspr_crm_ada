@@ -38,6 +38,7 @@ public class Personne implements Serializable {
 
     public Personne() {
     }
+
     public Personne(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail) {
         this.idPersonne = idPersonne;
         this.nom = nom;
