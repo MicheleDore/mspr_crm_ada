@@ -47,7 +47,7 @@ public class ProduitController {
     public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {
         produit.setIdProduit(id);
         service.update(produit);
-        return "redirect:/produits";
+        return "redirect:/produits/{id}/edition";
     }
 
     @GetMapping("/{id}/suppression")
