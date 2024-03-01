@@ -1,19 +1,44 @@
 package fr.epsi.poec24.mspr_crm_ada.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
+import jakarta.persistence.*;
 
-public class personnes implements Serializable {
+import java.io.Serializable;
+
+@Entity
+@Table(name = "personnes")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Personne implements Serializable {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_Personne")
     protected int idPersonne;
+
+    @Column(name = "Nom")
     protected String nom;
+
+    @Column(name = "Prenom")
     protected String prenom;
+
+    @Column(name = "CP")
     protected String cp;
+
+    @Column(name = "Ville")
     protected String ville;
+
+    @Column(name = "Rue")
     protected String rue;
+
+    @Column(name = "TelephonePerso")
     protected String tel;
+
+    @Column(name = "MailPerso")
     protected String mail;
 
-    public personnes(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail) {
+    public Personne() {
+    }
+    public Personne(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail) {
         this.idPersonne = idPersonne;
         this.nom = nom;
         this.prenom = prenom;
@@ -23,6 +48,8 @@ public class personnes implements Serializable {
         this.tel = tel;
         this.mail = mail;
     }
+
+
 
     //GETTER & SETTER
     public int getIdPersonne() {return idPersonne;}

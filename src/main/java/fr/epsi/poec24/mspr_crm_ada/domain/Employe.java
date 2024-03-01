@@ -4,16 +4,15 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
-public class employes extends personnes implements Serializable{
+public class Employe extends Personne implements Serializable{
 
     private int matricule;
     private Date dateEmbauche;
     private String mailPro;
 
     //CONSTRUCTOR
-    public employes(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, int matricule, Date dateEmbauche) {
+    public Employe(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, int matricule, Date dateEmbauche) {
         super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
         this.matricule = matricule;
         this.dateEmbauche = dateEmbauche;
