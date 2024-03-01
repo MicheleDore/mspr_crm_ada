@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Personnes(
 -- Création de la table Clients
 CREATE TABLE IF NOT EXISTS Clients(
     ID_Client INT(11),
-    Date_Enregistrement DATE NOT NULL
+    Date_Enregistrement DATE NOT NULL DEFAULT timestamp
 );
 
 -- Création de la table Employes
