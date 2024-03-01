@@ -11,7 +11,16 @@
     </head>
     <body>
         <header>
-            <nav th:replace="~{fragments/navbar}"></nav>
+            <h1 id="nav-title">
+                <a href="/">ACME</a>
+            </h1>
+
+            <nav>
+                <ul>
+                    <li><a href="/produits">Produits</a></li>
+                    <li><a href="/clients">Clients</a></li>
+                </ul>
+            </nav>
         </header>
         <main>
             <h1>La liste des produits</h1>
