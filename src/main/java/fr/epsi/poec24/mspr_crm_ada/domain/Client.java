@@ -1,11 +1,12 @@
 package fr.epsi.poec24.mspr_crm_ada.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -13,7 +14,9 @@ import java.util.Date;
 @PrimaryKeyJoinColumn(name = "ID_Client")
 public class Client extends Personne implements Serializable{
 
-    private Date dateEnregistrement;
+
+    @Column (name="Date_Enregistrement")
+    private Date dateEnregistrement =  Date.from(Instant.now());
 
     //CONSTRUCTOR
     public Client() {
@@ -24,10 +27,6 @@ public class Client extends Personne implements Serializable{
         super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
     }
 
-    public Client(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, Date dateEnregistrement) {
-        super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
-        this.dateEnregistrement = dateEnregistrement;
-    }
 
 
     //GETTER & SETTER
