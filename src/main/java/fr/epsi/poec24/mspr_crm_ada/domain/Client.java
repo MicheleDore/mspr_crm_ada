@@ -35,7 +35,7 @@ public class Client extends Personne implements Serializable{
     public Date getDateEnregistrement() {return dateEnregistrement;}
     public void setDateEnregistrement(Date dateEnregistrement) {this.dateEnregistrement = dateEnregistrement;}
 
-    //TO STRING
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Client{");

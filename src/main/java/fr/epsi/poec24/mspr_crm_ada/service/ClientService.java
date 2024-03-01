@@ -16,8 +16,20 @@ public class ClientService {
     @Autowired
     public ClientService(ClientDAO dao){this.dao = dao;}
 
-    public List<Client> findAll() {
-        return dao.findAll();
+    public List<Client> findAll() {return dao.findAll();}
+
+    public Client create(Client client) {
+        return dao.save(client);
+    }
+
+    public void deleteById(int id) {
+        dao.deleteById(id);
+    }
+
+    public Client findById(int id) {return dao.findById(id).orElse(null);}
+
+    public void update(Client client) {
+        dao.save(client);
     }
 
 }
