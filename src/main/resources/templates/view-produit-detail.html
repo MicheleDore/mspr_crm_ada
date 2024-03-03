@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" data-th-href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/demo-form.css}"/>
+
+        <title>Détail produit</title>
+
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{fragments/navbar}"></nav>
+        </header>
+        <main>
+            <form>
+                <h1>Détail du Produit</h1>
+                <ul class="flex-outer">
+                    <li><label for="inputId">ID : </label> <input disabled
+                                                                        type="text" id="inputId" data-th-value="${produit.idProduit}">
+                    </li>
+                    <li><label for="inputNom">Produit : </label> <input disabled
+                                                                       type="text" id="inputNom" data-th-value="${produit.nomProduit}"></li>
+                    <li><label for="taDescription">Description : </label> <textarea
+                            rows="3" id="taDescription" disabled data-th-text="${produit.description}">
+						</textarea>
+                    </li>
+                    <li><label for="inputDate">Date de création : </label> <input disabled
+                                                                        type="text" id="inputDate" data-th-value="${produit.dateCreationProduit}">
+                    </li>
+                    <li><label for="inputPrix">Prix : </label> <input
+                            disabled type="text" id="inputPrix"
+                            data-th-value="${produit.prix}">
+                    </li>
+                    <li><label for="inputNbVente">Nombre de vente : </label> <input disabled
+                                                                           type="text" id="inputNbVente" data-th-value="${produit.idProduit}">
+                    </li>
+
+                </ul>
+            </form>
+            <a data-th-href="@{/produits/{id}/edition(id=${produit.idProduit})}"><button type="button">Modifier</button></a>
+            <a data-th-href="@{/produits/{id}/suppression(id=${produit.idProduit})}"><button type="button">Supprimer</button></a>
+
+        </main>
+        <footer>
+            <p>&copy; EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>
