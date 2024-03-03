@@ -20,20 +20,20 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Nom</th>
                             <th>Prix</th>
+                            <th>Nombre de vente</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr data-th-each="item : ${produits}">
-                            <td data-th-text="${item.idProduit}"></td>
-                            <td data-th-text="${item.nomProduit}"></td>
+                            <td><a data-th-href="@{/produits/{id}/detail(id=${item.idProduit})}" th:text="${item.nomProduit}"></a></td>
+
                             <td data-th-text="${item.prix}"></td>
-                            <td>
-                                <a data-th-href="@{/produits/{id}/edition(id=${item.idProduit})}">Modifier</a>
-                                <a data-th-href="@{/produits/{id}/suppression(id=${item.idProduit})}">Supprimer</a>
-                            </td>
+                            <td data-th-text="${item.idProduit}"></td>
+
+
+
                         </tr>
                     </tbody>
                 </table>

@@ -24,12 +24,12 @@
             <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
-            <h1>Detail du produit</h1>
-            <h2 data-th-text="${produits.nomProduit}"></h2>
-            <p data-th-text="${produits.description}"></p>
-            <p data-th-text="${produits.prix}"></p>
-            <button onclick="toggleForm()">Modifier Produit</button>
-            <div id="myForm" style="display: none;">
+<!--            <h1>Detail du produit</h1>-->
+<!--            <h2 data-th-text="${produits.nomProduit}"></h2>-->
+<!--            <p data-th-text="${produits.description}"></p>-->
+<!--            <p data-th-text="${produits.prix}"></p>-->
+<!--            <button onclick="toggleForm()">Modifier Produit</button>-->
+<!--            <div id="myForm" style="display: none;">-->
                 <div  th:replace="~{fragments/form-produit}"></div>
             </div>
         </main>
