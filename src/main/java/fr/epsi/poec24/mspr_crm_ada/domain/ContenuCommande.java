@@ -67,16 +67,16 @@ public class ContenuCommande implements Serializable {
         this.quantite = quantite;
     }
 
-//    @Override
-//    public String toString() {
-//        final StringBuilder sb = new StringBuilder("ContenuCommande{");
-//        sb.append("idContenuCommande=").append(idContenuCommande);
-//        sb.append(", commande=").append(commande);
-//        sb.append(", produit=").append(produit);
-//        sb.append(", quantite=").append(quantite);
-//        sb.append('}');
-//        return sb.toString();
-//    }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ContenuCommande{");
+        sb.append("idContenuCommande=").append(idContenuCommande);
+        sb.append(", commande=").append(commande);
+        sb.append(", produit=").append(produit);
+        sb.append(", quantite=").append(quantite);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 
