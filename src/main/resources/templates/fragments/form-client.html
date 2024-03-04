@@ -1,7 +1,5 @@
 <form data-th-action="@{/clients/{id}/edition(id=${clients.idPersonne})}" data-th-object="${clients}" method="post">
 
-  <input type="hidden" name="idPersonne" th:value="${clients.idPersonne}"/> <!-- Include a hidden field for product ID -->
-
   <label for="nom">Nom du client:</label>
   <input type="text" id="nom" name="nom" th:value="${clients.nom}" required/>
   <br/>
@@ -11,27 +9,25 @@
   <br/>
 
   <label for="Rue">Rue:</label>
-  <input type="text" id="Rue" name="Rue" th:value="${clients.rue}</input>" required/>
+  <input type="text" id="Rue" name="Rue" th:value="${clients.rue}" required/>
   <br/>
 
-  <label for="Code postal">Code postal:</label>
-  <input type="text" id="Code postal" name="Code postal" th:value="${clients.cp}</input>" required/>
+  <label for="cp">Code postal:</label>
+  <input type="text" id="cp" name="cp" th:value="${clients.cp}" required/>
   <br/>
 
   <label for="Ville">Ville:</label>
-  <input type="text" id="Ville" name="Ville" th:value="${clients.ville}</input>" required/>
+  <input type="text" id="Ville" name="Ville" th:value="${clients.ville}" required/>
   <br/>
 
-  <label for="Telephone">Telephone:</label>
-  <input type="text" id="Telephone" name="Telephone" th:value="${clients.tel}</input>" required/>
+  <label for="tel">Telephone:</label>
+  <input type="text" id="tel" name="tel" th:value="${clients.tel}" required/>
   <br/>
 
-  <label for="Email">Email:</label>
-  <input type="text" id="Email" name="Email" th:value="${clients.mail}</input>" required/>
+  <label for="mail">Email:</label>
+  <input type="text" id="mail" name="mail" th:value="${clients.mail}" required/>
   <br/>
 
-  <label for="dateEnregistrement">Date d'enregistrement:</label>
-  <input type="datetime-local" id="dateEnregistrement" name="dateEnregistrement" th:value="${clients.dateEnregistrement}" required/>
   <br/>
 
   <button type="submit">Envoyer</button>
