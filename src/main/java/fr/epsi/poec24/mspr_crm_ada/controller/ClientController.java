@@ -1,7 +1,6 @@
 package fr.epsi.poec24.mspr_crm_ada.controller;
 
 import fr.epsi.poec24.mspr_crm_ada.domain.Client;
-import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
 import fr.epsi.poec24.mspr_crm_ada.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ public class ClientController {
 
     @GetMapping
     public String afficherListeClient(Model model){
+
         List<Client> mesClients = service.findAll();
         model.addAttribute("clients", mesClients);
         System.out.println(mesClients);
@@ -40,13 +40,14 @@ public class ClientController {
     @GetMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, Model model) {
         model.addAttribute("clients", service.findById(id));
-        return "view-client-form-edition";
+        System.out.println(model);
+        return "view-clients-form-edition";
     }
     @PostMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, @ModelAttribute Client client) {
         client.setIdPersonne(id);
         service.update(client);
-        return "redirect:/clients";
+        return "redirect:/clients/{id}/edition";
     }
 
     @GetMapping("/{id}/suppression")
