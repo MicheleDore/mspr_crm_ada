@@ -11,7 +11,16 @@
   </head>
   <body>
     <header>
-      <nav th:replace="~{fragments/navbar}"></nav>
+      <h1 id="nav-title">
+        <a href="/">ACME</a>
+      </h1>
+
+      <nav>
+        <ul>
+          <li><a href="/produits">Produits</a></li>
+          <li><a href="/clients">Clients</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
       <h1>La liste des clients</h1>
@@ -20,18 +29,21 @@
         <table>
           <thead>
             <tr>
-                <th>Clients</th>
-                <th>Code postal</th>
-                <th>Téléphone</th>
-                <th>Email</th>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Prenom</th>
             </tr>
           </thead>
           <tbody>
             <tr data-th-each="item : ${clients}">
-              <td><a data-th-href="@{/clients/{id}/detail(id=${item.idPersonne})}" th:text='${item.nom +" "+item.prenom}'></a></td>
-              <td data-th-text="${item.cp}"></td>
-              <td data-th-text="${item.tel}"></td>
-              <td data-th-text="${item.mail}"></td>
+              <td data-th-text="${item.idPersonne}"></td>
+              <td data-th-text="${item.nom}"></td>
+              <td data-th-text="${item.prenom}"></td>
+              <td data-th-text="${item.rue}"></td>
+              <td>
+                <a data-th-href="@{/clients/{id}/edition(id=${item.idPersonne})}">Modifier</a>
+                <a data-th-href="@{/clients/{id}/suppression(id=${item.idPersonne})}">Supprimer</a>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -14,7 +14,6 @@ import java.util.Date;
 @PrimaryKeyJoinColumn(name = "ID_Client")
 public class Client extends Personne implements Serializable{
 
-
     @Column (name="Date_Enregistrement")
     private Date dateEnregistrement =  Date.from(Instant.now());
 

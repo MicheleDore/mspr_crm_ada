@@ -45,6 +45,7 @@ public class ClientController {
     }
     @PostMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, @ModelAttribute Client client) {
+        System.out.println(client);
         client.setIdPersonne(id);
         service.update(client);
         return "redirect:/clients/{id}/detail";
