@@ -2,16 +2,34 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name = "employes")
+@PrimaryKeyJoinColumn(name = "ID_Employe")
 public class Employe extends Personne implements Serializable{
 
+
+    @Column(name="Matricule")
     private int matricule;
+
+    @Column (name="DateEmbauche")
     private Date dateEmbauche;
+
+    @Column (name="MailPro")
     private String mailPro;
 
     //CONSTRUCTOR
+
+    public Employe() {
+    }
+
     public Employe(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, int matricule, Date dateEmbauche) {
         super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
         this.matricule = matricule;

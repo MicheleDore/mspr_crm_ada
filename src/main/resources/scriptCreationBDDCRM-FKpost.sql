@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Commandes(
 
 -- Création de la table ContenuCommandes
 CREATE TABLE IF NOT EXISTS ContenuCommandes(
+    ID_ContenuCommande INT(11) AUTO_INCREMENT PRIMARY KEY,
     ID_Commande INT(11),
     ID_Produit INT(11),
     Quantite INT(11) NOT NULL
