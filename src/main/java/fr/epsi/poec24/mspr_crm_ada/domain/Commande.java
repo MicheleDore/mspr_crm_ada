@@ -101,16 +101,15 @@ public class Commande implements Serializable {
         this.contenuCommandes = contenuCommandes;
     }
 
-//    @Override
-//    public String toString() {
-//        final StringBuilder sb = new StringBuilder("Commande{");
-//        sb.append("idCommande=").append(idCommande);
-//        sb.append(", dateCommande=").append(dateCommande);
-//        sb.append(", numeroCommande=").append(numeroCommande);
-//        sb.append(", client=").append(client);
-//        sb.append(", employe=").append(employe);
-//        sb.append(", contenuCommandes=").append(contenuCommandes);
-//        sb.append('}');
-//        return sb.toString();
-//    }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Commande{");
+        sb.append("idCommande=").append(idCommande);
+        sb.append(", dateCommande=").append(dateCommande);
+        sb.append(", numeroCommande=").append(numeroCommande);
+        sb.append(", client=").append(client);
+        sb.append(", employe=").append(employe);
+        sb.append('}');
+        return sb.toString();
+    }
 }
