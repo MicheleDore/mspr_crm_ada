@@ -29,8 +29,6 @@ public class CommandeController {
         List<Integer> mesValeur= service.findCommande();
         model.addAttribute("commandes", mesCommandes);
         model.addAttribute("valeurs", mesValeur);
-
-        System.out.println(mesValeur);
         return "view-commandes-list";
     }
 }
