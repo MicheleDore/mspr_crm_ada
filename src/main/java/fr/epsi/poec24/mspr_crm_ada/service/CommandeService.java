@@ -18,4 +18,9 @@ public class CommandeService {
     public List<Commande> findAll() {
         return dao.findAll();
     }
+    public List<Integer> findCommande() {
+        return dao.findCommandeValeur();
+    }
+
+
 }
