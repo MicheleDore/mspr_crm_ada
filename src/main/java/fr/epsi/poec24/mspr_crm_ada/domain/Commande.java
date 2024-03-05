@@ -32,7 +32,7 @@ public class Commande implements Serializable {
     @JoinColumn(name = "ID_Employe")
     private Employe employe;
 
-    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ContenuCommande> contenuCommandes; // Relation avec le contenu de la commande
 
 
