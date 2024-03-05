@@ -28,15 +28,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-th-each="item, valeur : ${commandes}">
+                        <tr data-th-each="item : ${commandes}">
                             <td><a data-th-href="@{/commandes/{id}/detail(id=${item.idCommande})}" th:text="${item.getNumeroCommande()}"></a></td>
                             <td data-th-text="${item.dateCommande}"></td>
                             <td data-th-text="${item.getEmploye().getNom()}"></td>
                             <td data-th-text="${item.getClient().getNom()}"></td>
-                            <td data-th-text="${valeurs[valeur.index]}"></td> <!-- Affiche la valeur pour chaque commande -->
+                            <td data-th-text="${item.idCommande}"></td>
+
+
+
                         </tr>
                     </tbody>
                 </table>
+
             </section>
         </main>
 
