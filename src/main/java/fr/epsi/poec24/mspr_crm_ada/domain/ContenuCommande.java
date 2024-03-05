@@ -18,7 +18,7 @@ public class ContenuCommande implements Serializable {
     @JoinColumn(name = "ID_Commande")
     private Commande commande;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_Produit")
     private Produit produit;
 
