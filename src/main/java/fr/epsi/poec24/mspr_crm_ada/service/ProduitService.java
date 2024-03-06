@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProduitService {
@@ -15,16 +16,19 @@ public class ProduitService {
     @Autowired
     public ProduitService(ProduitDAO dao){ this.dao = dao;}
 
-    public List<Produit> findAll() {
-        return dao.findAll();
+    public List<Produit> findByEnCatalogue() {
+        return dao.findByEnCatalogue(true);
     }
 
     public Produit create(Produit produit) {
         return dao.save(produit);
     }
 
-    public void deleteById(int id) {
-        dao.deleteById(id);
+    public void outOfCatalogue(int id) {
+        Optional<Produit> optionalProduit = dao.findById(id);
+        Produit vieuxProduit = optionalProduit.get();
+        vieuxProduit.setEnCatalogue(false);
+        dao.save(vieuxProduit);
     }
 
     public Produit findById(int id) {
