@@ -11,15 +11,7 @@
     </head>
     <body>
         <header>
-            <h1 id="nav-title">
-                <a href="/">ACME</a>
-            </h1>
-            <nav>
-                <ul>
-
-                    <li><a href="/clients">Clients</a></li>
-                </ul>
-            </nav>
+            <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
             <h1>Création d'un nouveau client</h1>
