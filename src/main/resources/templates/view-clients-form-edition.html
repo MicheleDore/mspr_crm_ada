@@ -24,18 +24,19 @@
             <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
-            <h1>Détail du client</h1>
-            <h2 data-th-text="${clients.nom}"></h2>
-            <p data-th-text="${clients.prenom}"></p>
-            <p data-th-text="${clients.rue}"></p>
-            <p data-th-text="${clients.cp}"></p>
-            <p data-th-text="${clients.ville}"></p>
-            <p data-th-text="${clients.tel}"></p>
-            <p data-th-text="${clients.mail}"></p>
-            <button onclick="toggleForm()">Modifier client</button>
-            <div id="myForm" style="display: none;">
-                <div  th:replace="~{fragments/form-client}"></div>
-            </div>
+            <h1>Modifier client</h1>
+<!--            <h2 data-th-text="${clients.nom}"></h2>-->
+<!--            <p data-th-text="${clients.prenom}"></p>-->
+<!--            <p data-th-text="${clients.rue}"></p>-->
+<!--            <p data-th-text="${clients.cp}"></p>-->
+<!--            <p data-th-text="${clients.ville}"></p>-->
+<!--            <p data-th-text="${clients.tel}"></p>-->
+<!--            <p data-th-text="${clients.mail}"></p>-->
+<!--            <button onclick="toggleForm()">Modifier client</button>-->
+<!--            <div id="myForm" style="display: none;">-->
+<!--                <div  th:replace="~{fragments/form-client}"></div>-->
+<!--            </div>-->
+            <div  th:replace="~{fragments/form-client}"></div>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>
