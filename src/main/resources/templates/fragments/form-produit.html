@@ -1,6 +1,6 @@
 <form data-th-action="@{/produits/{id}/edition(id=${produits.idProduit})}" data-th-object="${produits}" method="post">
     <input type="hidden" name="idProduit" th:value="${produits.idProduit}"/> <!-- Include a hidden field for product ID -->
-    <label for="nomProduit">Nom du produit:</label>
+    <label for="nomProduit">Nom du produit :</label>
     <input type="text" id="nomProduit" name="nomProduit" th:value="${produits.nomProduit}" required/>
     <br/>
     <label for="prix">Prix:</label>

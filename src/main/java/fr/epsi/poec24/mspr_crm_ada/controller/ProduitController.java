@@ -37,6 +37,7 @@ public class ProduitController {
         service.create(produit);
         return "redirect:/produits";
     }
+
     @GetMapping("/{id}/edition")
     public String modifierproduits(@PathVariable int id, Model model) {
         model.addAttribute("produits", service.findById(id));
@@ -45,6 +46,7 @@ public class ProduitController {
     }
     @PostMapping("/{id}/edition")
     public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {
+        System.out.println(produit);
         produit.setIdProduit(id);
         service.update(produit);
         return "redirect:/produits/{id}/edition";

@@ -30,6 +30,7 @@ public class ClientService {
 
     public void update(Client client) {
         dao.save(client);
+        System.out.println(client);
     }
 
 }
