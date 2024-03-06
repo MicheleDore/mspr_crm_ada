@@ -9,8 +9,16 @@
     </head>
     <body>
         <header>
-            <nav th:replace="~{templates/fragments/navbar}"></nav>
-        </header>
+            <h1 id="nav-title">
+                <a href="/">ACME</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="/produits">Produits</a></li>
+                    <li><a href="/clients">Clients</a></li>
+                    <li><a href="/commandes">Commandes</a></li>
+                </ul>
+            </nav>        </header>
         <main>
             <section class="center-section">
                 <h1 style="text-align: center;">Bienvenue chez ACME</h1>
