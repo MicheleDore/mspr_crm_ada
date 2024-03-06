@@ -21,12 +21,12 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-
         List<Produit> mesProduits = service.findAll();
         model.addAttribute("produits", mesProduits);
         System.out.println(mesProduits);
         return "view-produits-list";
     }
+
     @GetMapping("/creer")
     public String creerProduit(Model model) {
         model.addAttribute("produits", new Produit());
@@ -49,7 +49,7 @@ public class ProduitController {
         System.out.println(produit);
         produit.setIdProduit(id);
         service.update(produit);
-        return "redirect:/produits/{id}/edition";
+        return "redirect:/produits/{id}/detail";
     }
 
     @GetMapping("/{id}/suppression")
