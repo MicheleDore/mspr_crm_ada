@@ -26,6 +26,11 @@ public class Produit implements Serializable{
     @Column(name="DateCreationProduit")
     private LocalDateTime dateCreationProduit;
 
+    @Column(name="EnCatalogue")
+    private boolean enCatalogue= true;
+
+    @Column(name="DateSuppressionProduit")
+    private LocalDateTime dateSuppressionProduit= null;
 
     //CONSTRUCTOR
 
@@ -34,32 +39,16 @@ public class Produit implements Serializable{
        // this(0, "", 0, "", new Date()); // Vous pouvez ajuster les valeurs par défaut selon vos besoins
     }
 
-    public Produit(int idProduit, String nomProduit, int prix) {
-        this.idProduit = idProduit;
-        this.nomProduit = nomProduit;
-        this.prix = prix;
-    }
-
-    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit) {
+    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit, boolean enCatalogue, LocalDateTime dateSuppressionProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
         this.description = description;
         this.dateCreationProduit = dateCreationProduit;
+        this.enCatalogue=enCatalogue;
+        this.dateSuppressionProduit=dateSuppressionProduit;
     }
 
-    public Produit(int idProduit, String nomProduit, int prix, LocalDateTime dateCreationProduit) {
-        this.idProduit = idProduit;
-        this.nomProduit = nomProduit;
-        this.prix = prix;
-        this.dateCreationProduit = dateCreationProduit;
-    }
-
-    public Produit(int idProduit, String nomProduit, LocalDateTime dateCreationProduit) {
-        this.idProduit = idProduit;
-        this.nomProduit = nomProduit;
-        this.dateCreationProduit = dateCreationProduit;
-    }
 //GETTER & SETTER
 
     public int getIdProduit() {return idProduit;}
@@ -76,6 +65,22 @@ public class Produit implements Serializable{
 
     public LocalDateTime getDateCreationProduit() {return dateCreationProduit;}
     public void setDateCreationProduit(LocalDateTime dateCreationProduit) {this.dateCreationProduit = dateCreationProduit;}
+
+    public boolean isEnCatalogue() {
+        return enCatalogue;
+    }
+
+    public void setEnCatalogue(boolean enCatalogue) {
+        this.enCatalogue = enCatalogue;
+    }
+
+    public LocalDateTime getDateSuppressionProduit() {
+        return dateSuppressionProduit;
+    }
+
+    public void setDateSuppressionProduit(LocalDateTime dateSuppressionProduit) {
+        this.dateSuppressionProduit = dateSuppressionProduit;
+    }
 
     @Override
     public boolean equals(Object o) {

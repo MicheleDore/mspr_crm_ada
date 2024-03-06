@@ -21,7 +21,7 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-        List<Produit> mesProduits = service.findAll();
+        List<Produit> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
         System.out.println(mesProduits);
         return "view-produits-list";
@@ -55,7 +55,7 @@ public class ProduitController {
     @GetMapping("/{id}/suppression")
     public String supprimerProduit(@PathVariable int id) {
         //TODO il faut faire toutes les vérifications nécessaires ici
-        service.deleteById(id);
+        service.outOfCatalogue(id);
         return "redirect:/produits";
     }
     @GetMapping("/{id}/detail")
