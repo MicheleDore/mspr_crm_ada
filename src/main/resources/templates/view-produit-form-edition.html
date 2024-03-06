@@ -8,30 +8,14 @@
         <link rel="stylesheet" data-th-href="@{/css/demo-form.css}"/>
 
         <title>Démo : Liste des fournisseurs</title>
-        <script>
-            function toggleForm() {
-                var form = document.getElementById("myForm");
-                if (form.style.display === "none") {
-                    form.style.display = "block";
-                } else {
-                    form.style.display = "none";
-                }
-            }
-        </script>
     </head>
     <body>
         <header>
             <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
-            <h1>Detail du produit</h1>
-            <h2 data-th-text="${produits.nomProduit}"></h2>
-            <p data-th-text="${produits.description}"></p>
-            <p data-th-text="${produits.prix}"></p>
-            <button onclick="toggleForm()">Modifier Produit</button>
-            <div id="myForm" style="display: none;">
-                <div  th:replace="~{fragments/form-produit}"></div>
-            </div>
+            <h1>Modification du produit</h1>
+            <div  th:replace="~{fragments/form-produit}"></div>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>
