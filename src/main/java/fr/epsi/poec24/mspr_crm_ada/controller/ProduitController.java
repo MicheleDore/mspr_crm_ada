@@ -58,4 +58,10 @@ public class ProduitController {
         service.deleteById(id);
         return "redirect:/produits";
     }
+    @GetMapping("/{id}/detail")
+    public String detailProduit(@PathVariable int id,Model model) {
+        model.addAttribute("produit", service.findById(id));
+
+        return "view-produit-detail";
+    }
 }

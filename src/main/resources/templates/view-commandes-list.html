@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" data-th-href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
+
+        <title>Liste des commandes</title>
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{fragments/navbar}"></nav>
+        </header>
+        <main>
+            <h1>La liste des commandes</h1>
+            <section>
+                <a class="action" href="commandes/creer">Ajouter une commande</a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Numéro commande</th>
+                            <th>Date</th>
+                            <th>Employé</th>
+                            <th>Client</th>
+                            <th>Valeur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-th-each="item, valeur : ${commandes}">
+                            <td><a data-th-href="@{/commandes/{id}/detail(id=${item.idCommande})}" th:text="${item.getNumeroCommande()}"></a></td>
+                            <td data-th-text="${item.dateCommande}"></td>
+                            <td data-th-text="${item.getEmploye().getNom()}"></td>
+                            <td data-th-text="${item.getClient().getNom()}"></td>
+                            <td data-th-text="${valeurs[valeur.index]}"></td> <!-- Affiche la valeur pour chaque commande -->
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>
