@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -18,13 +19,13 @@ public class ProduitService {
     @Autowired
     public ProduitService(ProduitDAO dao){ this.dao = dao;}
 
-    public List<Produit> findByEnCatalogue() {
+    public List<Objects[]> findByEnCatalogue() {
         return dao.findByEnCatalogue(true);
     }
 
-    public List<Integer> findListeProduit() {
-        return dao.findListeProduitQuantite();
-    }
+//    public List<Integer> findListeProduit() {
+//        return dao.findListeProduitQuantite();
+//    }
     public Produit create(Produit produit) {
         return dao.save(produit);
     }

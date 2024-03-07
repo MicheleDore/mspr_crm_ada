@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/produits")
@@ -21,11 +22,9 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-        List<Produit> mesProduits = service.findByEnCatalogue();
-        List<Integer> quantites= service.findListeProduit();
+        List<Objects[]> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
-        model.addAttribute("quantites", quantites);
-        System.out.println(quantites);
+        System.out.println(mesProduits);
         return "view-produits-list";
     }
 
