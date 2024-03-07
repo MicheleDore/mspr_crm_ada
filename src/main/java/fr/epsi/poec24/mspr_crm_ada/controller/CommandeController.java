@@ -27,15 +27,6 @@ public class CommandeController {
         this.service2 = service2;
     }
 
-    @GetMapping
-    public String afficherListeCommande(Model model) {
-        List<Commande> mesCommandes = service.findAll();
-        List<Integer> mesValeur= service.findListeCommande();
-        model.addAttribute("commandes", mesCommandes);
-        model.addAttribute("valeurs", mesValeur);
-        System.out.println(model.addAttribute("commandes", mesCommandes));
-        return "view-commandes-list";
-    }
 
     @GetMapping("/{id}/detail")
     public String detailCommande(@PathVariable int id,Model model) {
@@ -45,5 +36,13 @@ public class CommandeController {
         System.out.println(model.addAttribute("contenu", service2.findcontenuCommandebyid(id)));
 
         return "view-commande-detail";
+    }
+    @GetMapping
+    public String afficherListeCommande(Model model) {
+
+        List<Object[]> mesCommandes= service.findListeCommande();
+        model.addAttribute("commandes", mesCommandes);
+        System.out.println(model.addAttribute("commandes", mesCommandes));
+        return "view-commandes-list";
     }
 }

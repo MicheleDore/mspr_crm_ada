@@ -21,11 +21,13 @@ public class CommandeService {
     public Commande findById(int id) {
         return dao.findById(id).orElse(null);
     }
-    public List<Integer> findListeCommande() {
-        return dao.findListeCommandeValeur();
-    }
+
     public int findCommandeValeurbyid(int id){ return dao.findContenuCommande(id);}
 
+    public List<Object[]> findListeCommande() {
+        return dao.findListeCommandeValeur();
+    }
 
+    public List<Object[]> findListeCommancebyid(int id){return  dao.findCommandesAndMontantTotalByClientId(id);}
 
 }
