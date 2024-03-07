@@ -27,9 +27,9 @@
                     </thead>
                     <tbody>
                         <tr data-th-each="item : ${produits}">
-                            <td><a data-th-href="@{/produits/{id}/detail(id=${item.idProduit})}" th:text="${item.nomProduit}"></a></td>
-                            <td data-th-text="${item.prix}"></td>
-                            <td data-th-text="${item}"></td><!-- Affiche la quantite pour chaque produit -->
+                            <td><a data-th-href="@{/produits/{id}/detail(id=${item[0].idProduit})}" th:text="${item[0].nomProduit}"></a></td>
+                            <td data-th-text="${item[0].prix}"></td>
+                            <td data-th-text="${item[1]}"></td><!-- Affiche la quantite pour chaque produit -->
                         </tr>
                     </tbody>
                 </table>

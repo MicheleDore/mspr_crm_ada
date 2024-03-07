@@ -19,13 +19,10 @@ public class ProduitService {
     @Autowired
     public ProduitService(ProduitDAO dao){ this.dao = dao;}
 
-    public List<Objects[]> findByEnCatalogue() {
-        return dao.findByEnCatalogue(true);
+    public List<Object[]> findByEnCatalogue() {
+        return dao.findByEnCatalogue();
     }
 
-//    public List<Integer> findListeProduit() {
-//        return dao.findListeProduitQuantite();
-//    }
     public Produit create(Produit produit) {
         return dao.save(produit);
     }
