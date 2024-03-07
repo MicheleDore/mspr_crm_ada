@@ -22,7 +22,7 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-        List<Objects[]> mesProduits = service.findByEnCatalogue();
+        List<Object[]> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
         System.out.println(mesProduits);
         return "view-produits-list";

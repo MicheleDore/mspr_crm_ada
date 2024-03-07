@@ -35,14 +35,14 @@ public class Produit implements Serializable{
     private Date dateSuppressionProduit= null;
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<ContenuCommande> contenuCommandes;
+    private List<ContenuCommande> contenuCommande;
     //CONSTRUCTOR
 
     public Produit() {
        // this(0, "", 0, "", new Date()); // Vous pouvez ajuster les valeurs par défaut selon vos besoins
     }
 
-    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit, boolean enCatalogue, Date dateSuppressionProduit) {
+    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit, boolean enCatalogue, Date dateSuppressionProduit, List<ContenuCommande> contenuCommande) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
@@ -50,6 +50,7 @@ public class Produit implements Serializable{
         this.dateCreationProduit = dateCreationProduit;
         this.enCatalogue=enCatalogue;
         this.dateSuppressionProduit=dateSuppressionProduit;
+        this.contenuCommande=contenuCommande;
     }
 
 //GETTER & SETTER
@@ -83,6 +84,14 @@ public class Produit implements Serializable{
 
     public void setDateSuppressionProduit(Date dateSuppressionProduit) {
         this.dateSuppressionProduit = dateSuppressionProduit;
+    }
+
+    public List<ContenuCommande> getContenuCommande() {
+        return contenuCommande;
+    }
+
+    public void setContenuCommande(List<ContenuCommande> contenuCommande) {
+        this.contenuCommande = contenuCommande;
     }
 
     @Override
