@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
                         <tr data-th-each="item : ${produits}">
-                            <td><a data-th-href="@{/produits/{id}/detail(id=${item[0].idProduit})}" th:text="${item[0].nomProduit}"></a></td>
+                            <td><a data-th-href="@{/produits/{id}/detail(id=${item[0].idProduit}, quantite=${item[1]})}" th:text="${item[0].nomProduit}"></a></td>
                             <td data-th-text="${item[0].prix}"></td>
                             <td data-th-text="${item[1]}"></td><!-- Affiche la quantite pour chaque produit -->
                         </tr>
