@@ -5,7 +5,11 @@ import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class ProduitService {
@@ -15,16 +19,20 @@ public class ProduitService {
     @Autowired
     public ProduitService(ProduitDAO dao){ this.dao = dao;}
 
-    public List<Produit> findAll() {
-        return dao.findAll();
+    public List<Object[]> findByEnCatalogue() {
+        return dao.findByEnCatalogue();
     }
 
     public Produit create(Produit produit) {
         return dao.save(produit);
     }
 
-    public void deleteById(int id) {
-        dao.deleteById(id);
+    public void outOfCatalogue(int id) {
+        Optional<Produit> optionalProduit = dao.findById(id);
+        Produit vieuxProduit = optionalProduit.get();
+        vieuxProduit.setEnCatalogue(false);
+        vieuxProduit.setDateSuppressionProduit(Date.from(Instant.now()));
+        dao.save(vieuxProduit);
     }
 
     public Produit findById(int id) {

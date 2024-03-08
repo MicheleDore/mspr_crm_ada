@@ -21,12 +21,12 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-
-        List<Produit> mesProduits = service.findAll();
+        List<Object[]> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
         System.out.println(mesProduits);
         return "view-produits-list";
     }
+
     @GetMapping("/creer")
     public String creerProduit(Model model) {
         model.addAttribute("produits", new Produit());
@@ -35,7 +35,8 @@ public class ProduitController {
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
         service.create(produit);
-        return "redirect:/produits";
+        System.out.println(produit);
+        return "view-produit-detail";
     }
 
     @GetMapping("/{id}/edition")
@@ -49,19 +50,18 @@ public class ProduitController {
         System.out.println(produit);
         produit.setIdProduit(id);
         service.update(produit);
-        return "redirect:/produits/{id}/edition";
+        return "redirect:/produits/{id}/detail";
     }
 
     @GetMapping("/{id}/suppression")
     public String supprimerProduit(@PathVariable int id) {
         //TODO il faut faire toutes les vérifications nécessaires ici
-        service.deleteById(id);
+        service.outOfCatalogue(id);
         return "redirect:/produits";
     }
     @GetMapping("/{id}/detail")
     public String detailProduit(@PathVariable int id,Model model) {
         model.addAttribute("produit", service.findById(id));
-
         return "view-produit-detail";
     }
 }
