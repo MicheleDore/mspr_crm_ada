@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/produits")
@@ -36,7 +35,8 @@ public class ProduitController {
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
         service.create(produit);
-        return "redirect:/produits";
+        System.out.println(produit);
+        return "view-produit-detail";
     }
 
     @GetMapping("/{id}/edition")
@@ -62,7 +62,6 @@ public class ProduitController {
     @GetMapping("/{id}/detail")
     public String detailProduit(@PathVariable int id,Model model) {
         model.addAttribute("produit", service.findById(id));
-
         return "view-produit-detail";
     }
 }

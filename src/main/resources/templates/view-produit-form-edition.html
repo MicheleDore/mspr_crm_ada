@@ -16,6 +16,7 @@
         <main>
             <h1>Modification du produit</h1>
             <div  th:replace="~{fragments/form-produit}"></div>
+            <a data-th-href="@{/produits/{id}/detail(id=${produits.idProduit})}">Révenir au détail</a>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>

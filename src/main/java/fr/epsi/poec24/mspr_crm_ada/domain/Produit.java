@@ -2,7 +2,7 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class Produit implements Serializable{
     private String description;
 
     @Column(name="DateCreationProduit")
-    private LocalDateTime dateCreationProduit;
+    private Date dateCreationProduit =  Date.from(Instant.now());
 
     @Column(name="EnCatalogue")
     private boolean enCatalogue= true;
@@ -42,7 +42,7 @@ public class Produit implements Serializable{
        // this(0, "", 0, "", new Date()); // Vous pouvez ajuster les valeurs par défaut selon vos besoins
     }
 
-    public Produit(int idProduit, String nomProduit, int prix, String description, LocalDateTime dateCreationProduit, boolean enCatalogue, Date dateSuppressionProduit, List<ContenuCommande> contenuCommande) {
+    public Produit(int idProduit, String nomProduit, int prix, String description, Date dateCreationProduit, boolean enCatalogue, Date dateSuppressionProduit, List<ContenuCommande> contenuCommande) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.prix = prix;
@@ -67,8 +67,8 @@ public class Produit implements Serializable{
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
 
-    public LocalDateTime getDateCreationProduit() {return dateCreationProduit;}
-    public void setDateCreationProduit(LocalDateTime dateCreationProduit) {this.dateCreationProduit = dateCreationProduit;}
+    public Date getDateCreationProduit() {return dateCreationProduit;}
+    public void setDateCreationProduit(Date dateCreationProduit) {this.dateCreationProduit = dateCreationProduit;}
 
     public boolean isEnCatalogue() {
         return enCatalogue;
@@ -115,6 +115,9 @@ public class Produit implements Serializable{
         sb.append(", prix=").append(prix);
         sb.append(", description='").append(description).append('\'');
         sb.append(", dateCreationProduit=").append(dateCreationProduit);
+        sb.append(", enCatalogue=").append(enCatalogue);
+        sb.append(", dateSuppressionProduit=").append(dateSuppressionProduit);
+        sb.append(", contenuCommande=").append(contenuCommande);
         sb.append('}');
         return sb.toString();
     }
