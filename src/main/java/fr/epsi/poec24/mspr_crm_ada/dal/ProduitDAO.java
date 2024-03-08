@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface ProduitDAO extends JpaRepository<Produit, Integer> {
 
-    @Query("SELECT p, SUM(cc.quantite) as quantiteTotale " +
+    @Query("SELECT p, COALESCE(SUM(cc.quantite),0) as quantiteTotale " +
             "FROM Produit p " +
-            "JOIN p.contenuCommande cc " +
+            "LEFT JOIN p.contenuCommande cc ON p.idProduit = cc.produit.idProduit " +
             "WHERE p.enCatalogue=true " +
             "GROUP BY p.idProduit " +
-            "ORDER BY quantiteTotale DESC")
+            "ORDER BY 2 DESC")
     public List<Object[]> findByEnCatalogue();
 }
