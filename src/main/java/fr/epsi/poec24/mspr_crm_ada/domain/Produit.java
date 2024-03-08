@@ -117,7 +117,6 @@ public class Produit implements Serializable{
         sb.append(", dateCreationProduit=").append(dateCreationProduit);
         sb.append(", enCatalogue=").append(enCatalogue);
         sb.append(", dateSuppressionProduit=").append(dateSuppressionProduit);
-        sb.append(", contenuCommande=").append(contenuCommande);
         sb.append('}');
         return sb.toString();
     }
