@@ -48,7 +48,7 @@ public class ClientController {
         System.out.println(client);
         client.setIdPersonne(id);
         service.update(client);
-        return "redirect:/clients/{id}/edition";
+        return "redirect:/clients/{id}/detail";
     }
 
     @GetMapping("/{id}/suppression")
@@ -56,6 +56,13 @@ public class ClientController {
         //TODO il faut faire toutes les vérifications nécessaires ici
         service.deleteById(id);
         return "redirect:/clients";
+    }
+
+    @GetMapping("/{id}/detail")
+    public String detailClient(@PathVariable int id, Model model) {
+        model.addAttribute("clients", service.findById(id));
+        System.out.println(model);
+        return "view-clients-detail";
     }
 
 }
