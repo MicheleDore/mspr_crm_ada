@@ -46,9 +46,11 @@ public class ProduitController {
         return "view-produit-form-edition";
     }
     @PostMapping("/{id}/edition")
-    public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {
-        System.out.println(produit);
-        produit.setIdProduit(id);
+    public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit, Model model) {
+        Produit existingProduit = service.findById(id);
+        int prixOriginal = existingProduit.getPrix();
+        produit.setPrix(prixOriginal);
+        existingProduit.setIdProduit(id);
         service.update(produit);
         return "redirect:/produits/{id}/detail";
     }
