@@ -32,8 +32,8 @@ public class Commande implements Serializable {
     @JoinColumn(name = "ID_Employe")
     private Employe employe;
 
-    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<ContenuCommande> contenuCommandes; // Relation avec le contenu de la commande
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ContenuCommande> contenuCommandes;
 
 
     //CONSTRUCTOR
@@ -42,6 +42,14 @@ public class Commande implements Serializable {
 
 
     public Commande() {
+    }
+
+    public Commande(int idCommande, Date dateCommande, Client client, Employe employe, List<ContenuCommande> contenuCommandes) {
+        this.idCommande = idCommande;
+        this.dateCommande = dateCommande;
+        this.client = client;
+        this.employe = employe;
+        this.contenuCommandes = contenuCommandes;
     }
 
     public Commande(int idCommande, Date dateCommande, int numeroCommande, Client client, Employe employe, List<ContenuCommande> contenuCommandes) {

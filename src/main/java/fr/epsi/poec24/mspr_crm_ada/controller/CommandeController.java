@@ -1,8 +1,6 @@
 package fr.epsi.poec24.mspr_crm_ada.controller;
 
-import fr.epsi.poec24.mspr_crm_ada.domain.Commande;
-import fr.epsi.poec24.mspr_crm_ada.domain.ContenuCommande;
-import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
+import fr.epsi.poec24.mspr_crm_ada.domain.*;
 import fr.epsi.poec24.mspr_crm_ada.service.CommandeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ContenuCommandeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ProduitService;
@@ -11,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -25,9 +25,10 @@ public class CommandeController {
 
 
     @Autowired
-    public CommandeController(CommandeService service, ContenuCommandeService service2) {
+    public CommandeController(CommandeService service, ContenuCommandeService service2,ProduitService service3) {
         this.service = service;
         this.service2 = service2;
+        this.servive3 = service3;
     }
 
 
@@ -49,16 +50,38 @@ public class CommandeController {
         return "view-commandes-list";
     }
 
-    @GetMapping("/creer")
-    public String creerCommande(Model model) {
-        List<Produit> mesProduits = servive3.findAll();
-        model.addAttribute("produits",mesProduits);
-        model.addAttribute("produits", new Produit());
-        return "view-produit-form-creation";
+    @GetMapping("/{id}/creer")
+    public String afficherFormulaireCreationCommande(@PathVariable int id,Model model) {
+        List<Produit> produits = servive3.findAll();
+        model.addAttribute("produits", produits);
+
+        // Initialisez une commande avec une liste vide de contenuCommandes
+        Commande commande = new Commande();
+        commande.setContenuCommandes(new ArrayList<>());
+        Employe employe = new Employe();
+        employe.setIdPersonne(151);
+        commande.setEmploye(employe);
+        commande.setNumeroCommande(3000);
+        // Ajouter la date du jour à la commande
+        commande.setDateCommande(new Date());
+        // Ajouter l'ID du client à la commande
+        Client client = new Client();
+        client.setIdPersonne(id);
+        commande.setClient(client);
+        // Ajoutez un élément vide à la liste pour le premier produit
+        commande.getContenuCommandes().add(new ContenuCommande());
+        // Afficher le contenu de la liste contenuCommandes
+        for (ContenuCommande contenuCommande : commande.getContenuCommandes()) {
+            System.out.println("Contenu de la commande : " + contenuCommande);
+        }
+        model.addAttribute("commande", commande);
+        return "view-commande-form-creation";
     }
-    @PostMapping("/creer")
+    @PostMapping("/{id}/creer")
     public String creerCommande(@ModelAttribute Commande commande) {
+
+
         service.create(commande);
-        return "redirect:/produits";
+        return "redirect:/{id}/detail";
     }
 }

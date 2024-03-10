@@ -3,6 +3,7 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -26,8 +27,12 @@ public class Produit implements Serializable{
     @Column(name="DateCreationProduit")
     private LocalDateTime dateCreationProduit;
 
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<ContenuCommande> contenuCommandes;
 
-    //CONSTRUCTOR
+
+
+//CONSTRUCTOR
 
 
     public Produit() {
@@ -61,6 +66,14 @@ public class Produit implements Serializable{
         this.dateCreationProduit = dateCreationProduit;
     }
 //GETTER & SETTER
+
+    public List<ContenuCommande> getContenuCommandes() {
+        return contenuCommandes;
+    }
+
+    public void setContenuCommandes(List<ContenuCommande> contenuCommandes) {
+        this.contenuCommandes = contenuCommandes;
+    }
 
     public int getIdProduit() {return idProduit;}
     public void setIdProduit(int idProduit) {this.idProduit = idProduit;}
