@@ -5,6 +5,7 @@ import fr.epsi.poec24.mspr_crm_ada.domain.ContenuCommande;
 import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
 import fr.epsi.poec24.mspr_crm_ada.service.CommandeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ContenuCommandeService;
+import fr.epsi.poec24.mspr_crm_ada.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import java.util.List;
 public class CommandeController {
     private CommandeService service;
     private ContenuCommandeService service2;
+
+    private ProduitService servive3;
 
 
 
@@ -44,5 +47,18 @@ public class CommandeController {
         model.addAttribute("commandes", mesCommandes);
         System.out.println(model.addAttribute("commandes", mesCommandes));
         return "view-commandes-list";
+    }
+
+    @GetMapping("/creer")
+    public String creerCommande(Model model) {
+        List<Produit> mesProduits = servive3.findAll();
+        model.addAttribute("produits",mesProduits);
+        model.addAttribute("produits", new Produit());
+        return "view-produit-form-creation";
+    }
+    @PostMapping("/creer")
+    public String creerCommande(@ModelAttribute Commande commande) {
+        service.create(commande);
+        return "redirect:/produits";
     }
 }
