@@ -18,7 +18,7 @@ public class ContenuCommande implements Serializable {
     @JoinColumn(name = "ID_Commande")
     private Commande commande;
 
-    @ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_Produit")
     private Produit produit;
 
@@ -31,6 +31,11 @@ public class ContenuCommande implements Serializable {
     public ContenuCommande(int idContenuCommande, Commande commande, Produit produit, int quantite) {
         this.idContenuCommande = idContenuCommande;
         this.commande = commande;
+        this.produit = produit;
+        this.quantite = quantite;
+    }
+
+    public ContenuCommande(Produit produit, int quantite) {
         this.produit = produit;
         this.quantite = quantite;
     }
