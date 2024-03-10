@@ -4,6 +4,7 @@ package fr.epsi.poec24.mspr_crm_ada.service;
 import fr.epsi.poec24.mspr_crm_ada.dal.CommandeDAO;
 import fr.epsi.poec24.mspr_crm_ada.dal.ProduitDAO;
 import fr.epsi.poec24.mspr_crm_ada.domain.Commande;
+import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,9 @@ public class CommandeService {
 
     public List<Object[]> findListeCommande() {
         return dao.findListeCommandeValeur();
+    }
+    public Commande create(Commande commande) {
+        return dao.save(commande);
     }
 
     public List<Object[]> findListeCommancebyid(int id){return  dao.findCommandesAndMontantTotalByClientId(id);}
