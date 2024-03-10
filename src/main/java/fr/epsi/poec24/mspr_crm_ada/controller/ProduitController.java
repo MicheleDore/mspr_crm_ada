@@ -34,6 +34,7 @@ public class ProduitController {
     }
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
+        System.out.println(produit);
         service.create(produit);
         System.out.println(produit);
         return "view-produit-detail";
@@ -46,13 +47,25 @@ public class ProduitController {
         return "view-produit-form-edition";
     }
     @PostMapping("/{id}/edition")
-    public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit, Model model) {
-        Produit existingProduit = service.findById(id);
-        int prixOriginal = existingProduit.getPrix();
-        produit.setPrix(prixOriginal);
-        existingProduit.setIdProduit(id);
-        service.update(produit);
+    public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {
+        service.update(id, produit);
         return "redirect:/produits/{id}/detail";
+    }
+
+    @GetMapping("/{id}/edition-prix")
+    public String modifierprix(@PathVariable int id, Model model) {
+        model.addAttribute("produits", service.findById(id));
+        service.outOfCatalogue(id);
+        System.out.println(model);
+        return "view-prix-form-edition";
+    }
+    @PostMapping("/edition-prix")
+    public String modifierPrix(@ModelAttribute Produit produit) {
+        System.out.println("check");
+        System.out.println(produit);
+        service.create(produit);
+        System.out.println(produit);
+        return "view-produit-detail";
     }
 
     @GetMapping("/{id}/suppression")

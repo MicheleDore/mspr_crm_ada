@@ -39,7 +39,11 @@ public class ProduitService {
         return dao.findById(id).orElse(null);
     }
 
-    public void update(Produit produit) {
+    public void update(int id, Produit produit) {
+        Produit existingProduit = findById(id);
+        int prixOriginal = existingProduit.getPrix();
+        produit.setPrix(prixOriginal);
+        existingProduit.setIdProduit(id);
         dao.save(produit);
     }
 
