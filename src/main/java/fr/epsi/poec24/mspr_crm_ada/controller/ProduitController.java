@@ -21,12 +21,12 @@ public class ProduitController {
 
     @GetMapping
     public String afficherListeProduit(Model model) {
-
-        List<Produit> mesProduits = service.findAll();
+        List<Object[]> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
         System.out.println(mesProduits);
         return "view-produits-list";
     }
+
     @GetMapping("/creer")
     public String creerProduit(Model model) {
         model.addAttribute("produits", new Produit());
@@ -34,8 +34,10 @@ public class ProduitController {
     }
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
+        System.out.println(produit);
         service.create(produit);
-        return "redirect:/produits";
+        System.out.println(produit);
+        return "view-produit-detail";
     }
 
     @GetMapping("/{id}/edition")
@@ -46,22 +48,35 @@ public class ProduitController {
     }
     @PostMapping("/{id}/edition")
     public String modifierProduit(@PathVariable int id, @ModelAttribute Produit produit) {
+        service.update(id, produit);
+        return "redirect:/produits/{id}/detail";
+    }
+
+    @GetMapping("/{id}/edition-prix")
+    public String modifierprix(@PathVariable int id, Model model) {
+        model.addAttribute("produits", service.findById(id));
+        service.outOfCatalogue(id);
+        System.out.println(model);
+        return "view-prix-form-edition";
+    }
+    @PostMapping("/edition-prix")
+    public String modifierPrix(@ModelAttribute Produit produit) {
+        System.out.println("check");
         System.out.println(produit);
-        produit.setIdProduit(id);
-        service.update(produit);
-        return "redirect:/produits/{id}/edition";
+        service.create(produit);
+        System.out.println(produit);
+        return "view-produit-detail";
     }
 
     @GetMapping("/{id}/suppression")
     public String supprimerProduit(@PathVariable int id) {
         //TODO il faut faire toutes les vérifications nécessaires ici
-        service.deleteById(id);
+        service.outOfCatalogue(id);
         return "redirect:/produits";
     }
     @GetMapping("/{id}/detail")
     public String detailProduit(@PathVariable int id,Model model) {
         model.addAttribute("produit", service.findById(id));
-
         return "view-produit-detail";
     }
 }

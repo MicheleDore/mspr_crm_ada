@@ -6,7 +6,6 @@
         <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/demo-form.css}"/>
-
         <title>Démo : Liste des fournisseurs</title>
     </head>
     <body>
@@ -15,9 +14,10 @@
         </header>
         <main>
             <h1>Modification du produit</h1>
-            <form data-th-action="@{/produits/{id}/edition(id=${produits.idProduit})}" data-th-object="${produits}" method="post">
-                <input type="hidden" name="idProduit" th:value="${produits.idProduit}"/>
+            <form data-th-action="@{/produits/edition-prix}" data-th-object="${produits}" method="post">
                 <div  th:replace="~{fragments/form-produit}"></div>
+                <label for="prix">Nouveau prix :</label>
+                <input type="text" id="prix" name="prix" th:value="${produits.prix}" required/>
                 <button type="submit">Envoyer</button>
             </form>
             <a data-th-href="@{/produits/{id}/detail(id=${produits.idProduit})}">Révenir au détail</a>
