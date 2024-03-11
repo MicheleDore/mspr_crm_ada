@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Employes(
 CREATE TABLE IF NOT EXISTS Commandes(
                                         ID_Commande INT(11) AUTO_INCREMENT PRIMARY KEY,
     DateCommande DATE NOT NULL,
-    NumeroCommande INT(11),
+    NumeroCommande INT(11) ,
     ID_Client INT(11),
     ID_Employe INT(11)
     );
