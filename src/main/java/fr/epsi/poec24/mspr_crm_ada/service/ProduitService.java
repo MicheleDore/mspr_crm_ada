@@ -26,6 +26,9 @@ public class ProduitService {
     public Produit create(Produit produit) {
         return dao.save(produit);
     }
+    public List<Produit> findAll() {
+        return dao.findAll();
+    }
 
     public void outOfCatalogue(int id) {
         Optional<Produit> optionalProduit = dao.findById(id);
