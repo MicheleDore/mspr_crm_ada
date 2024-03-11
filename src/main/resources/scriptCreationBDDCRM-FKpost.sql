@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Personnes(
 CREATE TABLE IF NOT EXISTS Clients(
                                       Date_Enregistrement DATE NOT NULL,
                                       ID_Client INT(11)
+
     );
 
 -- Création de la table Employes
@@ -26,7 +27,9 @@ CREATE TABLE IF NOT EXISTS Employes(
                                        ID_Employe INT(11),
     Matricule INT(11) NOT NULL,
     DateEmbauche DATE NOT NULL,
-    MailPro VARCHAR(100) NOT NULL
+    MailPro VARCHAR(100) NOT NULL,
+                                       password VARCHAR(250) NOT NULL DEFAULT '$2y$10$.qkbukzzX21D.bqbI.B2R.tvWP90o/Y16QRWVLodw51BHft7ZWbc.',
+                                       role VARCHAR(250) NOT NULL DEFAULT 'USER'
     );
 
 -- Création de la table Commandes
