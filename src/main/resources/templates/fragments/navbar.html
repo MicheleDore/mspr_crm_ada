@@ -1,19 +1,11 @@
-<header>
     <h1 id="nav-title">
         <a href="/">ACME</a>
     </h1>
     <nav>
         <ul>
+            <li><a href="/statistiques">Statistiques</a></li>
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
         </ul>
     </nav>
-    <div>
-        <p th:text="'Connecté :  ' + ${employe.getNom()}"></p>
-        <p th:text="'Role :  ' + ${employe.getRole()}"></p>
-        <br>
-        <a href="/logout">Déconnexion</a>
-    </div>
-
-</header>
