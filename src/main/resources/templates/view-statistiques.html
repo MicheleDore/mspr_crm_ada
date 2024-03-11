@@ -9,21 +9,12 @@
     </head>
     <body>
         <header>
-            <h1 id="nav-title">
-                <a href="/static">ACME</a>
-            </h1>
-            <nav>
-                <ul>
-                    <li><a href="/statistiques">Statistiques</a></li>
-                    <li><a href="/produits">Produits</a></li>
-                    <li><a href="/clients">Clients</a></li>
-                    <li><a href="/commandes">Commandes</a></li>
-                </ul>
-            </nav>
+            <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
             <section class="center-section">
-                <h1 style="text-align: center;">Bienvenue chez ACME</h1>
+                <h1>                Chiffre d'Affaire
+                </h1>
             </section>
         </main>
         <footer>
