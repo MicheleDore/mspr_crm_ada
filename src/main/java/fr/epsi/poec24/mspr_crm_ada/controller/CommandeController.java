@@ -52,36 +52,69 @@ public class CommandeController {
 
     @GetMapping("/{id}/creer")
     public String afficherFormulaireCreationCommande(@PathVariable int id,Model model) {
-        List<Produit> produits = servive3.findAll();
-        model.addAttribute("produits", produits);
-
-        // Initialisez une commande avec une liste vide de contenuCommandes
         Commande commande = new Commande();
-        commande.setContenuCommandes(new ArrayList<>());
+        model.addAttribute("commande", commande);
+        return "view-commande-form-creation";
+    }
+    @PostMapping("/{id}/creer")
+    public String creerCommande(@PathVariable int id,@ModelAttribute Commande commande, @RequestParam ("quantite") Integer[] quantites,@RequestParam ("nomProduit") Integer[] produits) {
+        // Générez le numéro de commande unique et assignez-le à la commande
+        commande.setNumeroCommande(generateUniqueNumber());
+        commande.getIdCommande();
+        // Créez la liste de contenuCommandes à partir des quantités et des produits
+        List<ContenuCommande> contenuCommandes = new ArrayList<>();
+
+        for (int i = 0; i < quantites.length; i++) {
+            ContenuCommande contenuCommande = new ContenuCommande();
+
+            // Vous devez définir la logique pour récupérer le Produit en fonction du nom (produits[i])
+            Produit produit = servive3.findById(produits[i]); // À adapter à votre logique
+            contenuCommande.setCommande(commande);
+            contenuCommande.setProduit(produit);
+            contenuCommande.setQuantite(quantites[i]);
+            // Assurez-vous de définir la relation bidirectionnelle
+            contenuCommande.setCommande(commande);
+            contenuCommandes.add(contenuCommande);
+        }
+        commande.setContenuCommandes(contenuCommandes);
         Employe employe = new Employe();
         employe.setIdPersonne(151);
         commande.setEmploye(employe);
-        commande.setNumeroCommande(3000);
         // Ajouter la date du jour à la commande
         commande.setDateCommande(new Date());
         // Ajouter l'ID du client à la commande
         Client client = new Client();
         client.setIdPersonne(id);
         commande.setClient(client);
-        // Ajoutez un élément vide à la liste pour le premier produit
-        commande.getContenuCommandes().add(new ContenuCommande());
-        // Afficher le contenu de la liste contenuCommandes
-        for (ContenuCommande contenuCommande : commande.getContenuCommandes()) {
-            System.out.println("Contenu de la commande : " + contenuCommande);
-        }
-        model.addAttribute("commande", commande);
-        return "view-commande-form-creation";
-    }
-    @PostMapping("/{id}/creer")
-    public String creerCommande(@ModelAttribute Commande commande) {
-
-
         service.create(commande);
-        return "redirect:/{id}/detail";
+        return "redirect:/clients/{id}/detail";
     }
+    @ModelAttribute("listeProduits")
+    public List<Produit> getAllProducts() {
+        return servive3.findAll();
+    }
+    // Méthode pour générer le numéro de commande unique
+    private int generateUniqueNumber() {
+        // Implémentez la logique pour récupérer le prochain numéro de commande à partir d'une source de données
+        // Par exemple, vous pourriez consulter une base de données pour obtenir le dernier numéro généré
+        // puis l'incrémenter de 1.
+        return getNextCommandeNumberFromDatabase();
+    }
+    // Méthode pour simuler la récupération du prochain numéro de commande
+    private int getNextCommandeNumberFromDatabase() {
+        // Ici, vous pourriez consulter votre source de données réelle
+        // Pour cet exemple, nous utilisons une variable statique comme simulateur
+        // Vous devrez adapter cela en fonction de votre environnement
+        return getNextCommandeNumber();
+    }
+
+    // Variable statique pour simuler le dernier numéro généré
+    private static int lastGeneratedNumber = 3001;
+
+    // Méthode pour simuler l'obtention du prochain numéro
+    private synchronized int getNextCommandeNumber() {
+        lastGeneratedNumber++;
+        return lastGeneratedNumber;
+    }
+
 }

@@ -21,6 +21,7 @@ public class Commande implements Serializable {
     @Column(name = "DateCommande")
     private Date dateCommande = Date.from(Instant.now());
 
+
     @Column(name = "NumeroCommande")
     private int numeroCommande;
 

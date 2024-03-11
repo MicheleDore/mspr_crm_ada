@@ -52,8 +52,10 @@
                         <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
                     </tr>
                 </tbody>
-            </table>
-            <a data-th-href="@{/commandes/{id}/creer(id=${clients.idPersonne})}"><button type="button">Créer une commande</button></a>
+            </table><a th:href="@{'/commandes/' + ${clients.idPersonne} + '/creer'}">
+            <button type="button">Créer une commande</button>
+        </a>
+
 
             <!--            <button onclick="toggleForm()">Modifier client</button>-->
 <!--            <div id="myForm" style="display: none;">-->
