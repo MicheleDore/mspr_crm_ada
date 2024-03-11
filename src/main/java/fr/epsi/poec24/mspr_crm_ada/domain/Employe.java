@@ -25,9 +25,48 @@ public class Employe extends Personne implements Serializable{
     @Column (name="MailPro")
     private String mailPro;
 
+
+    @Column (name="password")
+    private String password;
+
+    @Column (name="role")
+    private String role;
+
     //CONSTRUCTOR
 
     public Employe() {
+    }
+
+    public Employe(String mailPro, String password, String role) {
+        this.mailPro = mailPro;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Employe(int matricule, Date dateEmbauche, String mailPro, String password, String role) {
+        this.matricule = matricule;
+        this.dateEmbauche = dateEmbauche;
+        this.mailPro = mailPro;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Employe(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, int matricule, Date dateEmbauche, String mailPro, String password, String role) {
+        super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
+        this.matricule = matricule;
+        this.dateEmbauche = dateEmbauche;
+        this.mailPro = mailPro;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Employe(int idPersonne, int matricule, Date dateEmbauche, String mailPro, String password, String role) {
+        super(idPersonne);
+        this.matricule = matricule;
+        this.dateEmbauche = dateEmbauche;
+        this.mailPro = mailPro;
+        this.password = password;
+        this.role = role;
     }
 
     public Employe(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail, int matricule, Date dateEmbauche) {
@@ -41,6 +80,22 @@ public class Employe extends Personne implements Serializable{
         super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
     }
 //GETTER & SETTER
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getMatricule() {return matricule;}
     public void setMatricule(int matricule) {this.matricule = matricule;}

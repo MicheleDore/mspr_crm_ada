@@ -17,6 +17,8 @@ public class Client extends Personne implements Serializable{
     @Column (name="Date_Enregistrement")
     private Date dateEnregistrement =  Date.from(Instant.now());
 
+
+
     //CONSTRUCTOR
     public Client() {
 
