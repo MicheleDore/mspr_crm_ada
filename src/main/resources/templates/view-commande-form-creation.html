@@ -1,74 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" th:href="@{/img/epsi.png}" sizes="32x32"/>
-    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
-    <link rel="stylesheet" th:href="@{/css/general.css}"/>
-    <link rel="stylesheet" th:href="@{/css/demo-form.css}"/>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" th:href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+        <link rel="stylesheet" th:href="@{/css/general.css}"/>
+        <link rel="stylesheet" th:href="@{/css/demo-form.css}"/>
 
-    <title>Création commande</title>
-</head>
-<body>
-<header>
-    <nav th:replace="~{fragments/navbar}"></nav>
-</header>
-<main>
-    <h1>Création d'une commande</h1>
-    <form th:action="@{/commandes/{id}/creer}" method="post" th:object="${commande}">
-        <!-- ... autres champs du formulaire ... -->
+        <title>Création commande</title>
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{fragments/navbar}"></nav>
+        </header>
+        <main>
+            <h1>Création d'une commande</h1>
+            <form th:action="@{'/commandes/' + ${id} + '/creer'}" method="post" th:object="${commande}">
 
-        <!-- ... autres champs du formulaire ... -->
 
-        <h2>Contenu de la commande</h2>
-        <div id="contenuCommandeContainer">
-            <div th:each="contenuCommande, stat : *{contenuCommandes}" class="ligneContenuCommande">
-                <label>Produit:</label>
-                <select th:field="*{contenuCommandes[__${stat.index}__].produit.idProduit}">
-                    <option th:each="produit : ${produits}" th:value="${produit.idProduit}" th:text="${produit.nomProduit}"></option>
-                </select>
-                <label>Quantité:</label>
-                <input type="number" th:field="*{contenuCommandes[__${stat.index}__].quantite}" />
-                <button type="button" onclick="supprimerLigneContenuCommande(this)">Supprimer</button>
-            </div>
-        </div>
+            <h2>Contenu de la commande</h2>
+                <div id="listeProduits">
+                    <div class="produit">
+                        <select class="produit" name="nomProduit">
+                            <option th:each="produit : ${listeProduits}" th:value="${produit.idProduit}" th:text="${produit.nomProduit}"></option>
+                        </select>
+                        <label>Quantité:</label>
+                        <input type="number" class="quantite" name="quantite"/>
+                    </div>
+                </div>
+                <button type="button" onclick="ajouterProduit()">Ajouter un produit</button>
 
-        <button type="button" onclick="ajouterLigneContenuCommande()">Ajouter une ligne</button>
+                <input type="submit" value="Créer la commande"/>
 
-        <!-- ... autres champs du formulaire ... -->
-
-        <input type="submit" value="Créer la commande"/>
-
-        <script th:inline="javascript">
-            // Fonction pour ajouter une nouvelle ligne de contenuCommande
-            function ajouterLigneContenuCommande() {
-                var container = document.getElementById('contenuCommandeContainer');
-                var template = document.querySelector('.ligneContenuCommande').cloneNode(true);
-
-                // Réinitialiser les champs clonés
-                template.querySelector('select').value = '';
-                template.querySelector('input[type="number"]').value = '';
-
-                // Mettre à jour les noms des champs pour assurer la liaison avec le modèle Spring
-                var newIndex = container.children.length;
-                template.innerHTML = template.innerHTML.replace(/\[__0__\]/g, '[' + newIndex + ']');
-
-                container.appendChild(template);
-            }
-
-            // Fonction pour supprimer une ligne de contenuCommande
-            function supprimerLigneContenuCommande(element) {
-                var container = document.getElementById('contenuCommandeContainer');
-                container.removeChild(element.parentNode);
-            }
-
-            // Initialiser le formulaire avec une ligne de contenuCommande
-            ajouterLigneContenuCommande();
-        </script>
-
-</main>
-<footer>
-    <p>@ EPSI POEC - Tous droits réservés</p>
-</footer>
-</body>
+            </form>
+            <script>
+                function ajouterProduit() {
+                    var nouveauProduit = document.createElement('div');
+                    nouveauProduit.innerHTML = document.querySelector('.produit').innerHTML;
+                    document.getElementById('listeProduits').appendChild(nouveauProduit);
+                }
+            </script>
+        </main>
+        <footer>
+            <p>@ EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
 </html>

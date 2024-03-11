@@ -37,8 +37,10 @@ public class Employe extends Personne implements Serializable{
         this.mailPro = mail;
     }
 
-
-    //GETTER & SETTER
+    public Employe(int idPersonne, String nom, String prenom, String cp, String ville, String rue, String tel, String mail) {
+        super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
+    }
+//GETTER & SETTER
 
     public int getMatricule() {return matricule;}
     public void setMatricule(int matricule) {this.matricule = matricule;}
