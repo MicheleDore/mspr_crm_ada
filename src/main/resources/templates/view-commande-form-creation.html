@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" th:href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+        <link rel="stylesheet" th:href="@{/css/general.css}"/>
+        <link rel="stylesheet" th:href="@{/css/demo-form.css}"/>
+
+        <title>Création commande</title>
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{fragments/navbar}"></nav>
+        </header>
+        <main>
+            <h1>Création d'une commande</h1>
+            <form th:action="@{'/commandes/' + ${id} + '/creer'}" method="post" th:object="${commande}">
+
+
+            <h2>Contenu de la commande</h2>
+                <div id="listeProduits">
+                    <div class="produit">
+                        <select class="produit" name="nomProduit">
+                            <option th:each="produit : ${listeProduits}" th:value="${produit.idProduit}" th:text="${produit.nomProduit}"></option>
+                        </select>
+                        <label>Quantité:</label>
+                        <input type="number" class="quantite" name="quantite"/>
+                    </div>
+                </div>
+                <button type="button" onclick="ajouterProduit()">Ajouter un produit</button>
+
+                <input type="submit" value="Créer la commande"/>
+
+            </form>
+            <script>
+                function ajouterProduit() {
+                    var nouveauProduit = document.createElement('div');
+                    nouveauProduit.innerHTML = document.querySelector('.produit').innerHTML;
+                    document.getElementById('listeProduits').appendChild(nouveauProduit);
+                }
+            </script>
+        </main>
+        <footer>
+            <p>@ EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>

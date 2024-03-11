@@ -2,6 +2,8 @@ package fr.epsi.poec24.mspr_crm_ada.controller;
 
 import fr.epsi.poec24.mspr_crm_ada.domain.Client;
 import fr.epsi.poec24.mspr_crm_ada.service.ClientService;
+import fr.epsi.poec24.mspr_crm_ada.service.CommandeService;
+import fr.epsi.poec24.mspr_crm_ada.service.ContenuCommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import java.util.List;
 @RequestMapping("/clients")
 public class ClientController {
     private ClientService service;
+    private CommandeService service2;
+
 
     @Autowired
-    public ClientController(ClientService service){this.service = service;}
+    public ClientController(ClientService service,CommandeService service2){this.service = service;this.service2 = service2;}
 
     @GetMapping
     public String afficherListeClient(Model model){
@@ -61,6 +65,7 @@ public class ClientController {
     @GetMapping("/{id}/detail")
     public String detailClient(@PathVariable int id, Model model) {
         model.addAttribute("clients", service.findById(id));
+        model.addAttribute("commandes", service2.findListeCommancebyid(id));
         System.out.println(model);
         return "view-clients-detail";
     }

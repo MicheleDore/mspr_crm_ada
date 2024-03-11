@@ -50,7 +50,9 @@ public class Personne implements Serializable {
         this.mail = mail;
     }
 
-
+    public Personne(int idPersonne) {
+        this.idPersonne = idPersonne;
+    }
 
     //GETTER & SETTER
     public int getIdPersonne() {return idPersonne;}
