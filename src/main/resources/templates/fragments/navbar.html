@@ -1,4 +1,4 @@
-
+<header>
     <h1 id="nav-title">
         <a href="/">ACME</a>
     </h1>
@@ -9,3 +9,10 @@
             <li><a href="/commandes">Commandes</a></li>
         </ul>
     </nav>
+    <div>
+        <p th:text="'Connecté :  ' + ${employe.getNom()}"></p>
+        <br>
+        <a href="/logout">Déconnexion</a>
+    </div>
+
+</header>
