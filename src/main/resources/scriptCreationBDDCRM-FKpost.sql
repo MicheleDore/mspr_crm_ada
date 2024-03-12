@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Employes(
     DateEmbauche DATE NOT NULL,
     MailPro VARCHAR(100) NOT NULL,
                                        password VARCHAR(250) NOT NULL DEFAULT '$2y$10$.qkbukzzX21D.bqbI.B2R.tvWP90o/Y16QRWVLodw51BHft7ZWbc.',
-                                       role VARCHAR(250) NOT NULL DEFAULT 'USER'
+                                       role VARCHAR(250) NOT NULL DEFAULT 'COMMERCIAUX'
     );
 
 -- Création de la table Commandes
