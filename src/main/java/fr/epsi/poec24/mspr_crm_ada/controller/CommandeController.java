@@ -3,8 +3,11 @@ package fr.epsi.poec24.mspr_crm_ada.controller;
 import fr.epsi.poec24.mspr_crm_ada.domain.*;
 import fr.epsi.poec24.mspr_crm_ada.service.CommandeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ContenuCommandeService;
+import fr.epsi.poec24.mspr_crm_ada.service.EmployeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +24,17 @@ public class CommandeController {
 
     private ProduitService servive3;
 
+    private EmployeService service4;
+
 
 
 
     @Autowired
-    public CommandeController(CommandeService service, ContenuCommandeService service2,ProduitService service3) {
+    public CommandeController(CommandeService service, ContenuCommandeService service2,ProduitService service3, EmployeService service4) {
         this.service = service;
         this.service2 = service2;
         this.servive3 = service3;
+        this.service4 = service4;
     }
 
 
@@ -76,9 +82,15 @@ public class CommandeController {
             contenuCommande.setCommande(commande);
             contenuCommandes.add(contenuCommande);
         }
+        // Récupérer les informations de l'utilisateur connecté
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nomUtilisateur = auth.getName(); // Récupère le nom d'utilisateur
+        // Utilisez le nom d'utilisateur pour obtenir l'employé correspondant
+        Employe employe = service4.findByMailPro(nomUtilisateur);
+        commande.setEmploye(employe);
         commande.setContenuCommandes(contenuCommandes);
-        Employe employe = new Employe();
-        employe.setIdPersonne(151);
+
+
         commande.setEmploye(employe);
         // Ajouter la date du jour à la commande
         commande.setDateCommande(new Date());

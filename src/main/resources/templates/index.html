@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" href="/img/epsi.png" sizes="32x32"/>
+        <link rel="stylesheet" href="/css/layout.css"/>
+        <link rel="stylesheet" href="/css/general.css"/>
+        <title>ACME</title>
+    </head>
+    <body>
+        <header>
+            <nav th:replace="~{fragments/navbar}"></nav>
+        </header>
+            <section class="center-section">
+                <h1 style="text-align: center;"> ACME</h1>
+                <br>
+                <br>
+                <h2 style="text-align: center;">  <p th:text="'Bienvenue ' + ${employe.getPrenom()}"></p></h2>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>
