@@ -8,11 +8,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -23,38 +19,27 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth ->{
-            auth.requestMatchers("/commandes").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
-            auth.requestMatchers("/commandes/{id}/detail").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
-            auth.requestMatchers("/commandes/{id}/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
-            auth.requestMatchers("/Clients").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
-            auth.requestMatchers("/Clients/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
-            auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAUX","DIR-COM");
-            auth.requestMatchers("/Clients/{id}/suppression").hasAnyRole("DIR-COM");
-            auth.requestMatchers("/Clients/{id}/detail").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
-            auth.requestMatchers("/produits").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
-            auth.requestMatchers("/produits/creer").hasAnyRole("RES-CAT");
-            auth.requestMatchers("/produits/{id}/edition").hasAnyRole("RES-CAT");
-            auth.requestMatchers("/produits/{id}/edition-prix").hasAnyRole("RES-CAT");
-            auth.requestMatchers("/produits/{id}/suppression").hasAnyRole("RES-CAT");
-            auth.requestMatchers("/produits/{id}/detail").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/commandes").permitAll();
+            auth.requestMatchers("/commandes/{id}/detail").permitAll();
+            auth.requestMatchers("/commandes/{id}/creer").permitAll();
+            auth.requestMatchers("/clients").permitAll();
+            auth.requestMatchers("/clients/creer").permitAll();
+            auth.requestMatchers("/clients/{id}/edition").permitAll();
+            auth.requestMatchers("/clients/{id}/suppression").permitAll();
+            auth.requestMatchers("/clients/{id}/detail").permitAll();
+            auth.requestMatchers("/produits").permitAll();
+            auth.requestMatchers("/produits/creer").permitAll();
+            auth.requestMatchers("/produits/{id}/edition").permitAll();
+            auth.requestMatchers("/produits/{id}/edition-prix").permitAll();
+            auth.requestMatchers("/produits/{id}/suppression").permitAll();
+            auth.requestMatchers("/produits/{id}/detail").permitAll();
             auth.anyRequest().authenticated();
         } ).formLogin(Customizer.withDefaults()).build();
     }
 
     @Autowired
     private  CustomUserDetailsService customUserDetailsService;
-//    @Bean
-//    public UserDetailsService users() {
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder().encode("user"))
-//                .roles("USER").build();
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password(passwordEncoder().encode("admin"))
-//                .roles("USER", "ADMIN").build();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

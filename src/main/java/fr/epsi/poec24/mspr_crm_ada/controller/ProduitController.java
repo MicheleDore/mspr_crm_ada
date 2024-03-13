@@ -28,16 +28,14 @@ public class ProduitController {
     }
 
     @GetMapping("/creer")
-    public String creerProduit(Model model) {
+    public String creerProduits(Model model) {
         model.addAttribute("produits", new Produit());
         return "view-produit-form-creation";
     }
     @PostMapping("/creer")
     public String creerProduit(@ModelAttribute Produit produit) {
-        System.out.println(produit);
         service.create(produit);
-        System.out.println(produit);
-        return "view-produit-detail";
+        return "redirect:/produits";
     }
 
     @GetMapping("/{id}/edition")
