@@ -106,27 +106,6 @@ public class CommandeController {
         return servive3.findAll();
     }
     // Méthode pour générer le numéro de commande unique
-    private int generateUniqueNumber() {
-        // Implémentez la logique pour récupérer le prochain numéro de commande à partir d'une source de données
-        // Par exemple, vous pourriez consulter une base de données pour obtenir le dernier numéro généré
-        // puis l'incrémenter de 1.
-        return getNextCommandeNumberFromDatabase();
-    }
-    // Méthode pour simuler la récupération du prochain numéro de commande
-    private int getNextCommandeNumberFromDatabase() {
-        // Ici, vous pourriez consulter votre source de données réelle
-        // Pour cet exemple, nous utilisons une variable statique comme simulateur
-        // Vous devrez adapter cela en fonction de votre environnement
-        return getNextCommandeNumber();
-    }
 
-    // Variable statique pour simuler le dernier numéro généré
-    private static int lastGeneratedNumber = 3001;
-
-    // Méthode pour simuler l'obtention du prochain numéro
-    private synchronized int getNextCommandeNumber() {
-        lastGeneratedNumber++;
-        return lastGeneratedNumber;
-    }
 
 }

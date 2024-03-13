@@ -16,7 +16,6 @@
         <main>
             <h1>La liste des commandes</h1>
             <section>
-                <a th:if="${#authorization.expression('hasAnyRole(''COMMERCIAUX'',''DIR-COM'')')}" class="action" href="commandes/creer">Ajouter une commande</a>
                 <table>
                     <thead>
                         <tr>
