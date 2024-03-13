@@ -23,27 +23,38 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth ->{
-            auth.requestMatchers("/admin").hasRole("ADMIN");
-            auth.requestMatchers("/user").hasRole("USER");
-            auth.requestMatchers("/produits").hasRole("USER");
+            auth.requestMatchers("/commandes").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/commandes/{id}/detail").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/commandes/{id}/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
+            auth.requestMatchers("/Clients/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients/{id}/suppression").hasAnyRole("DIR-COM");
+            auth.requestMatchers("/Clients/{id}/detail").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
+            auth.requestMatchers("/produits").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/produits/creer").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/edition").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/edition-prix").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/suppression").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/detail").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
             auth.anyRequest().authenticated();
         } ).formLogin(Customizer.withDefaults()).build();
     }
 
     @Autowired
     private  CustomUserDetailsService customUserDetailsService;
-    @Bean
-    public UserDetailsService users() {
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER").build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("USER", "ADMIN").build();
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+//    @Bean
+//    public UserDetailsService users() {
+//        UserDetails user = User.builder()
+//                .username("user")
+//                .password(passwordEncoder().encode("user"))
+//                .roles("USER").build();
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("admin"))
+//                .roles("USER", "ADMIN").build();
+//        return new InMemoryUserDetailsManager(user, admin);
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

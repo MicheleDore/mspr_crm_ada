@@ -16,7 +16,7 @@
         <main>
             <h1>La liste des produits</h1>
             <section>
-                <a class="action" href="produits/creer">Ajouter un produits</a>
+                <a th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" class="action" href="produits/creer">Ajouter un produits</a>
                 <table>
                     <thead>
                         <tr>

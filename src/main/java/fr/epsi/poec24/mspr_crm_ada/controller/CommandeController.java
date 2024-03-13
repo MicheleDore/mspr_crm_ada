@@ -64,8 +64,8 @@ public class CommandeController {
     }
     @PostMapping("/{id}/creer")
     public String creerCommande(@PathVariable int id,@ModelAttribute Commande commande, @RequestParam ("quantite") Integer[] quantites,@RequestParam ("nomProduit") Integer[] produits) {
-        // Générez le numéro de commande unique et assignez-le à la commande
-        commande.setNumeroCommande(generateUniqueNumber());
+
+
         commande.getIdCommande();
         // Créez la liste de contenuCommandes à partir des quantités et des produits
         List<ContenuCommande> contenuCommandes = new ArrayList<>();
