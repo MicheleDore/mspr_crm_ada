@@ -31,7 +31,7 @@ public class SpringSecurityConfig {
             auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAUX","DIR-COM");
             auth.requestMatchers("/Clients/{id}/suppression").hasAnyRole("DIR-COM");
             auth.requestMatchers("/Clients/{id}/detail").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
-            auth.requestMatchers("/produits").permitAll();
+            auth.requestMatchers("/produits").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
             auth.requestMatchers("/produits/creer").hasAnyRole("RES-CAT");
             auth.requestMatchers("/produits/{id}/edition").hasAnyRole("RES-CAT");
             auth.requestMatchers("/produits/{id}/edition-prix").hasAnyRole("RES-CAT");

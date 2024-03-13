@@ -22,8 +22,7 @@ public class Commande implements Serializable {
     private Date dateCommande = Date.from(Instant.now());
 
 
-    @Column(name = "NumeroCommande")
-    private int numeroCommande;
+
 
     @ManyToOne
     @JoinColumn(name = "ID_Client")
@@ -53,14 +52,7 @@ public class Commande implements Serializable {
         this.contenuCommandes = contenuCommandes;
     }
 
-    public Commande(int idCommande, Date dateCommande, int numeroCommande, Client client, Employe employe, List<ContenuCommande> contenuCommandes) {
-        this.idCommande = idCommande;
-        this.dateCommande = dateCommande;
-        this.numeroCommande = numeroCommande;
-        this.client = client;
-        this.employe = employe;
-        this.contenuCommandes = contenuCommandes;
-    }
+
 
     public int getIdCommande() {
         return idCommande;
@@ -78,13 +70,9 @@ public class Commande implements Serializable {
         this.dateCommande = dateCommande;
     }
 
-    public int getNumeroCommande() {
-        return numeroCommande;
-    }
 
-    public void setNumeroCommande(int numeroCommande) {
-        this.numeroCommande = numeroCommande;
-    }
+
+
 
     public Client getClient() {
         return client;
@@ -115,7 +103,6 @@ public class Commande implements Serializable {
         final StringBuilder sb = new StringBuilder("Commande{");
         sb.append("idCommande=").append(idCommande);
         sb.append(", dateCommande=").append(dateCommande);
-        sb.append(", numeroCommande=").append(numeroCommande);
         sb.append(", client=").append(client);
         sb.append(", employe=").append(employe);
         sb.append('}');
