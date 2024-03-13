@@ -5,6 +5,7 @@
         <link rel="icon" href="/img/epsi.png" sizes="32x32"/>
         <link rel="stylesheet" href="/css/layout.css"/>
         <link rel="stylesheet" href="/css/general.css"/>
+        <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
         <title>ACME</title>
     </head>
     <body>
@@ -13,8 +14,30 @@
         </header>
         <main>
             <section class="center-section">
-                <h1>                Chiffre d'Affaire
-                </h1>
+                <h1>Chiffre d'Affaire <span th:text="${param.annee}"></span></h1>
+                <table>
+                    <tbody>
+                    <thead>
+                        <tr >
+                            <th th:each="item : ${CA}" th:text="${item}"></th>
+                        </tr>
+                    </thead>
+                    </tbody>
+                    <tr>
+                        <th>Janvier</th>
+                        <th>Février</th>
+                        <th>Mars</th>
+                        <th>Avril</th>
+                        <th>Mai</th>
+                        <th>Juin</th>
+                        <th>Juillet</th>
+                        <th>Août</th>
+                        <th>Septembre</th>
+                        <th>Octobre</th>
+                        <th>Novembre</th>
+                        <th>Décembre</th>
+                    </tr>
+                </table>
             </section>
         </main>
         <footer>

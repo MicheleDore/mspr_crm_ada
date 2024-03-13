@@ -1,11 +1,23 @@
-    <h1 id="nav-title">
+
+<h1 id="nav-title">
         <a href="/">ACME</a>
     </h1>
     <nav>
         <ul>
-            <li><a href="/statistiques">Statistiques</a></li>
+            <li><a id="statistiques" href="#">Statistiques</a></li>
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
         </ul>
     </nav>
+<script>
+    // Obtenir l'année en cours
+    var currentYear = (new Date().getFullYear()) -1;
+
+    // Construire l'URL avec l'année en tant que paramètre
+    var url = "/statistiques/page?annee=" + currentYear;
+
+    // Récupérer le lien "Statistiques" et lui attribuer l'URL construit
+    var link = document.getElementById("statistiques");
+    link.href = url;
+</script>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/statistiques")
+@RequestMapping("/statistiques/page")
 public class StatistiquesController {
     private StatistiquesService service;
 
@@ -19,8 +19,11 @@ public class StatistiquesController {
         this.service = service;
     }
 
-    public String afficherPage() {
-
+    @GetMapping
+    public String afficherChiffresAffaire(@RequestParam("annee") String annee,Model model) {
+        List<Integer> mesCA = service.calculCA(annee);
+        model.addAttribute("CA", mesCA);
+        System.out.println(model);
         return "view-statistiques";
     }
 }
