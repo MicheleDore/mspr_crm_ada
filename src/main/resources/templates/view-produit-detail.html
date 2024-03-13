@@ -27,7 +27,10 @@
                             rows="3" id="taDescription" disabled data-th-text="${produit.description}">
 						</textarea>
                     </li>
-                    <li><label for="inputDate">Date de création : </label> <input disabled type="text" id="inputDate" data-th-value="${produit.dateCreationProduit}">
+                    <li>
+                        <label for="inputDate">Date de création : </label>
+                        <input disabled type="text" id="inputDate" data-th-value="${#dates.format(produit.dateCreationProduit, 'dd/MM/yyyy')}">
+                    </li>
                     </li>
                     <li><label for="inputPrix">Prix : </label> <input
                             disabled type="text" id="inputPrix"
@@ -38,9 +41,9 @@
                     </li>
                 </ul>
             </form>
-            <a data-th-href="@{/produits/{id}/edition(id=${produit.idProduit})}"><button type="button">Modifier</button></a>
-            <a data-th-href="@{/produits/{id}/edition-prix(id=${produit.idProduit})}"><button type="button">Changement de prix</button></a>
-            <a data-th-href="@{/produits/{id}/suppression(id=${produit.idProduit})}"><button type="button">Supprimer</button></a>
+            <a data-th-href="@{/produits/{id}/edition(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Modifier</button></a>
+            <a data-th-href="@{/produits/{id}/edition-prix(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Changement de prix</button></a>
+            <a data-th-href="@{/produits/{id}/suppression(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Supprimer</button></a>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>

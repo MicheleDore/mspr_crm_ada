@@ -16,7 +16,7 @@
         <main>
             <h1>La liste des commandes</h1>
             <section>
-                <a class="action" href="commandes/creer">Ajouter une commande</a>
+                <a th:if="${#authorization.expression('hasAnyRole(''COMMERCIAUX'',''DIR-COM'')')}" class="action" href="commandes/creer">Ajouter une commande</a>
                 <table>
                     <thead>
                         <tr>
@@ -29,8 +29,8 @@
                     </thead>
                     <tbody>
                         <tr data-th-each="item : ${commandes}">
-                            <td><a data-th-href="@{/commandes/{id}/detail(id=${item[0].idCommande})}" th:text="${item[0].getNumeroCommande()}"></a></td>
-                            <td data-th-text="${item[0].dateCommande}"></td>
+                            <td><a data-th-href="@{/commandes/{id}/detail(id=${item[0].idCommande})}" th:text="${item[0].getIdCommande}"></a></td>
+                            <td data-th-text="${#dates.format(item[0].dateCommande, 'dd/MM/yyyy')}"></td>
                             <td data-th-text="${item[0].getEmploye().getNom()}"></td>
                             <td data-th-text="${item[0].getClient().getNom()}"></td>
                             <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
