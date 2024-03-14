@@ -14,12 +14,15 @@
         </header>
         <main>
             <section class="center-section">
-                <h1>Chiffre d'Affaire <span th:text="${param.annee}"></span></h1>
+                <h1>Chiffre d'Affaire <span th:text="${param.annee}"></span> : <span th:text="${total}"></span> €</h1>
+                <div >
+                        <a class="action" data-th-href="@{/statistiques/page?annee=(${annee})}"th:each="annee : ${annees}" th:text="${annee}" ></a>
+                </div>
                 <table>
                     <tbody>
                     <thead>
                         <tr >
-                            <th th:each="item : ${CA}" th:text="${item}"></th>
+                            <th th:each="item : ${CA}" th:text="${item[1]} +' €'"></th>
                         </tr>
                     </thead>
                     </tbody>
