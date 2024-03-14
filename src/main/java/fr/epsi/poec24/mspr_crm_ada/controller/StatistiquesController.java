@@ -1,6 +1,5 @@
 package fr.epsi.poec24.mspr_crm_ada.controller;
 
-import fr.epsi.poec24.mspr_crm_ada.service.ProduitService;
 import fr.epsi.poec24.mspr_crm_ada.service.StatistiquesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/statistiques/page")
 public class StatistiquesController {
-    private StatistiquesService service;
+    private final StatistiquesService service;
 
     @Autowired
     public StatistiquesController(StatistiquesService service) {

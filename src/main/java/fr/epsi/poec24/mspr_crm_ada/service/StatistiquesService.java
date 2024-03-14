@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class StatistiquesService {
 
-    private StatistiquesDAO dao;
+    private final StatistiquesDAO dao;
 
     @Autowired
     public StatistiquesService(StatistiquesDAO dao){ this.dao = dao;}
