@@ -21,9 +21,13 @@ public class StatistiquesController {
 
     @GetMapping
     public String afficherChiffresAffaire(@RequestParam("annee") String annee,Model model) {
-        List<Integer> mesCA = service.calculCA(annee);
+        List<Object> mesCA = service.calculCA(annee);
+        int total = service.totalAnnee(annee);
+        List<Integer> annees= service.annees();
+        model.addAttribute("total", total);
         model.addAttribute("CA", mesCA);
-        System.out.println(model);
+        model.addAttribute("annees", annees);
+        System.out.println(annees);
         return "view-statistiques";
     }
 }

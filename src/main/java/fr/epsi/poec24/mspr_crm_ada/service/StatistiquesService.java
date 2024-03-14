@@ -14,8 +14,16 @@ public class StatistiquesService {
     @Autowired
     public StatistiquesService(StatistiquesDAO dao){ this.dao = dao;}
 
-    public List<Integer> calculCA(String annee) {
+    public List<Object> calculCA(String annee) {
         return dao.calculCA(annee);
+    }
+
+    public int totalAnnee(String annee) {
+        return dao.totalAnnee(annee);
+    }
+
+    public List<Integer> annees() {
+        return dao.annees();
     }
 
 }
