@@ -5,6 +5,7 @@ import fr.epsi.poec24.mspr_crm_ada.service.ClientService;
 import fr.epsi.poec24.mspr_crm_ada.service.CommandeService;
 import fr.epsi.poec24.mspr_crm_ada.service.ContenuCommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class ClientController {
         model.addAttribute("clients", new Client());
         return "view-clients-form-creation";
     }
+
     @PostMapping("/creer")
     public String creerClient(@ModelAttribute Client client) {
         service.create(client);

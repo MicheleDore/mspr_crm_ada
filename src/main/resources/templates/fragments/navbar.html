@@ -7,6 +7,9 @@
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
+            <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}"  id="statistiques" href="#">Statistiques</a></li>
+
+
         </ul>
     </nav>
     <div>
@@ -17,3 +20,14 @@
     </div>
 
 </header>
+<script>
+    // Obtenir l'année en cours
+    var currentYear = (new Date().getFullYear()) ;
+
+    // Construire l'URL avec l'année en tant que paramètre
+    var url = "/statistiques/page?annee=" + currentYear;
+
+    // Récupérer le lien "Statistiques" et lui attribuer l'URL construit
+    var link = document.getElementById("statistiques");
+    link.href = url;
+</script>
