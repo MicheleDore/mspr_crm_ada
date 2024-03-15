@@ -8,14 +8,14 @@
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
-            <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" class="action" href="/statistiques">Statistiques</a></li>
+            <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" class="action" id="statistiques" href="#">Statistiques</a></li>
 
 
         </ul>
     </nav>
 <script>
     // Obtenir l'année en cours
-    var currentYear = (new Date().getFullYear()) -1;
+    var currentYear = (new Date().getFullYear()) ;
 
     // Construire l'URL avec l'année en tant que paramètre
     var url = "/statistiques/page?annee=" + currentYear;
