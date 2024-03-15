@@ -16,28 +16,34 @@
             <section class="center-section">
                 <h1>Chiffre d'Affaire <span th:text="${param.annee}"></span> : <span th:text="${total}"></span> €</h1>
                 <div >
-                        <a class="action" data-th-href="@{/statistiques/page(annee=${annee})}" th:each="annee : ${annees}" th:text="${annee}" ></a>
+                    <a class="action" data-th-href="@{/statistiques/page(annee=${annee})}" th:each="annee : ${annees}" th:text="${annee}" ></a>
                 </div>
                 <table>
                     <thead>
                         <tr >
-                            <th th:each="item : ${CA}" th:text="${item[1]} +' €'"></th>
+                            <th th:each="mois : ${#numbers.sequence(1, 12)}">
+                                <span th:each="item : ${CA}">
+                                    <span th:if="${item[0]} == ${mois}">
+                                        <span th:text="${item[1]} + ' €'"></span>
+                                    </span>
+                                </span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Janvier</th>
-                            <th>Février</th>
-                            <th>Mars</th>
-                            <th>Avril</th>
-                            <th>Mai</th>
-                            <th>Juin</th>
-                            <th>Juillet</th>
-                            <th>Août</th>
-                            <th>Septembre</th>
-                            <th>Octobre</th>
-                            <th>Novembre</th>
-                            <th>Décembre</th>
+                            <th id="1">Janvier</th>
+                            <th id="2">Février</th>
+                            <th id="3">Mars</th>
+                            <th id="4">Avril</th>
+                            <th id="5">Mai</th>
+                            <th id="6">Juin</th>
+                            <th id="7">Juillet</th>
+                            <th id="8">Août</th>
+                            <th id="9">Septembre</th>
+                            <th id="10">Octobre</th>
+                            <th id="11">Novembre</th>
+                            <th id="12">Décembre</th>
                         </tr>
                     </tbody>
                 </table>
