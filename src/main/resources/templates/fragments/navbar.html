@@ -7,6 +7,7 @@
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
+
             <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}"  id="statistiques" href="#">Statistiques</a></li>
 
 
