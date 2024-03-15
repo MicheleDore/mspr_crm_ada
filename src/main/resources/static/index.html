@@ -10,7 +10,7 @@
     <body>
         <header>
             <h1 id="nav-title">
-                <a href="/static">ACME</a>
+                <a href="/">ACME</a>
             </h1>
             <nav>
                 <ul>
@@ -18,7 +18,7 @@
                     <li><a href="/produits">Produits</a></li>
                     <li><a href="/clients">Clients</a></li>
                     <li><a href="/commandes">Commandes</a></li>
-                    <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" class="action" href="/statistiques">Statistiques</a></li>
+                    <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" class="action" href="/statistiques/page?annee=">Statistiques</a></li>
 
                 </ul>
             </nav>
@@ -27,6 +27,17 @@
             <section class="center-section">
                 <h1 style="text-align: center;">Bienvenue chez ACME</h1>
             </section>
+            <script>
+                // Obtenir l'année en cours
+                var currentYear = (new Date().getFullYear()) ;
+
+                // Construire l'URL avec l'année en tant que paramètre
+                var url = "/statistiques/page?annee=" + currentYear;
+
+                // Récupérer le lien "Statistiques" et lui attribuer l'URL construit
+                var link = document.getElementById("statistiques");
+                link.href = url;
+            </script>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>

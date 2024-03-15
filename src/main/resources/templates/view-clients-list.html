@@ -16,7 +16,7 @@
     <main>
       <h1>La liste des clients</h1>
       <section>
-        <a th:if="${#authorization.expression('hasAnyRole(''COMMERCIAUX'',''DIR-COM'')')}" class="action" href="clients/creer">Ajouter un client</a>
+        <a th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}" class="action" href="clients/creer">Ajouter un client</a>
         <table>
           <thead>
             <tr>
