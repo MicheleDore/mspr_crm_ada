@@ -17,3 +17,14 @@
     </div>
 
 </header>
+<script>
+    // Obtenir l'année en cours
+    var currentYear = (new Date().getFullYear()) -1;
+
+    // Construire l'URL avec l'année en tant que paramètre
+    var url = "/statistiques/page?annee=" + currentYear;
+
+    // Récupérer le lien "Statistiques" et lui attribuer l'URL construit
+    var link = document.getElementById("statistiques");
+    link.href = url;
+</script>
