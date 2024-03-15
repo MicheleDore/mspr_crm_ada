@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS Employes(
     Matricule INT(11) NOT NULL,
     DateEmbauche DATE NOT NULL,
     MailPro VARCHAR(100) NOT NULL,
-     password VARCHAR(250) NOT NULL DEFAULT '$2y$10$.qkbukzzX21D.bqbI.B2R.tvWP90o/Y16QRWVLodw51BHft7ZWbc.',
-                                           role VARCHAR(250) NOT NULL DEFAULT 'COMMERCIAl');
+    password VARCHAR(250) NOT NULL DEFAULT '$2y$10$.qkbukzzX21D.bqbI.B2R.tvWP90o/Y16QRWVLodw51BHft7ZWbc.',
+    role VARCHAR(250) NOT NULL DEFAULT 'COMMERCIAL');
 
 -- Création de la table Commandes
 CREATE TABLE IF NOT EXISTS Commandes(
@@ -627,6 +627,13 @@ VALUES
     (198,82106,"21.09.21","gaetan@gmail.com"),
     (199,89248,"14.03.21","michele@gmail.com"),
     (200,29819,"24.07.22","mickael@gmail.com");
+
+UPDATE `employes`
+SET `role` = "DIR-COM"
+WHERE `ID_Employe` = 200;
+UPDATE `employes`
+SET `role` = "RES-CAT"
+WHERE `ID_Employe` = 199;
 
 
 -- Insertion de données d'exemple dans la table Commande
