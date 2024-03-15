@@ -22,10 +22,10 @@ public class SpringSecurityConfig {
             auth.requestMatchers("/statistiques/page").hasRole("DIR-COM");
             auth.requestMatchers("/commandes").permitAll();
             auth.requestMatchers("/commandes/{id}/detail").permitAll();
-            auth.requestMatchers("/commandes/{id}/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/commandes/{id}/creer").hasAnyRole("COMMERCIAL","DIR-COM");
             auth.requestMatchers("/Clients").permitAll();
-            auth.requestMatchers("/Clients/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
-            auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients/creer").hasAnyRole("COMMERCIAL","DIR-COM");
+            auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAL","DIR-COM");
             auth.requestMatchers("/Clients/{id}/suppression").hasRole("DIR-COM");
             auth.requestMatchers("/Clients/{id}/detail").permitAll();
             auth.requestMatchers("/produits").permitAll();
