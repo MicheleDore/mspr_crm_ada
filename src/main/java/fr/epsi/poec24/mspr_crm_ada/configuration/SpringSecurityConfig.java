@@ -19,19 +19,19 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable().authorizeHttpRequests(auth ->{
-            auth.requestMatchers("/commandes").permitAll();
-            auth.requestMatchers("/commandes/{id}/detail").permitAll();
-            auth.requestMatchers("/commandes/{id}/creer").permitAll();
-            auth.requestMatchers("/clients").permitAll();
-            auth.requestMatchers("/clients/creer").permitAll();
-            auth.requestMatchers("/clients/{id}/edition").permitAll();
-            auth.requestMatchers("/clients/{id}/suppression").permitAll();
-            auth.requestMatchers("/clients/{id}/detail").permitAll();
+            auth.requestMatchers("/commandes").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/commandes/{id}/detail").hasAnyRole("COMMERCIAUX","DIR-COM","RES-CAT");
+            auth.requestMatchers("/commandes/{id}/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients").permitAll();
+            auth.requestMatchers("/Clients/creer").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients/{id}/edition").hasAnyRole("COMMERCIAUX","DIR-COM");
+            auth.requestMatchers("/Clients/{id}/suppression").hasAnyRole("DIR-COM");
+            auth.requestMatchers("/Clients/{id}/detail").hasAnyRole("COMMERCIAUXADMIN","DIR-COM","RES-CAT");
             auth.requestMatchers("/produits").permitAll();
-            auth.requestMatchers("/produits/creer").permitAll();
-            auth.requestMatchers("/produits/{id}/edition").permitAll();
-            auth.requestMatchers("/produits/{id}/edition-prix").permitAll();
-            auth.requestMatchers("/produits/{id}/suppression").permitAll();
+            auth.requestMatchers("/produits/creer").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/edition").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/edition-prix").hasAnyRole("RES-CAT");
+            auth.requestMatchers("/produits/{id}/suppression").hasAnyRole("RES-CAT");
             auth.requestMatchers("/produits/{id}/detail").permitAll();
             auth.anyRequest().authenticated();
         } ).formLogin(Customizer.withDefaults()).build();
