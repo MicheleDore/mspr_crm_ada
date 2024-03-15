@@ -18,7 +18,7 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth ->{
+        return http.csrf().disable().authorizeHttpRequests(auth ->{
             auth.requestMatchers("/commandes").permitAll();
             auth.requestMatchers("/commandes/{id}/detail").permitAll();
             auth.requestMatchers("/commandes/{id}/creer").permitAll();
