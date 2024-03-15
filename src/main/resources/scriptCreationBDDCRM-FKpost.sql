@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Employes(
     DateEmbauche DATE NOT NULL,
     MailPro VARCHAR(100) NOT NULL,
      password VARCHAR(250) NOT NULL DEFAULT '$2y$10$.qkbukzzX21D.bqbI.B2R.tvWP90o/Y16QRWVLodw51BHft7ZWbc.',
-                                           role VARCHAR(250) NOT NULL DEFAULT 'COMMERCIAUX');
+                                           role VARCHAR(250) NOT NULL DEFAULT 'COMMERCIAl');
 
 -- Création de la table Commandes
 CREATE TABLE IF NOT EXISTS Commandes(
@@ -624,9 +624,9 @@ VALUES
     (195,21504,"10.02.22","ligula.eu@outlook.net"),
     (196,90870,"02.06.23","eu.nulla@aol.ca"),
     (197,40277,"21.02.21","donec.luctus.aliquet@protonmail.org"),
-    (198,82106,"21.09.21","erat.in@outlook.edu"),
-    (199,89248,"14.03.21","quis.diam.pellentesque@google.edu"),
-    (200,29819,"24.07.22","litora.torquent.per@icloud.ca");
+    (198,82106,"21.09.21","gaetan@gmail.com"),
+    (199,89248,"14.03.21","michele@gmail.com"),
+    (200,29819,"24.07.22","mickael@gmail.com");
 
 
 -- Insertion de données d'exemple dans la table Commande
