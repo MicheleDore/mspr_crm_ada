@@ -33,7 +33,7 @@
             <p data-th-text="${clients.ville}"></p>
             <p data-th-text="${clients.tel}"></p>
             <p data-th-text="${clients.mail}"></p>
-            <a data-th-href="@{/clients/{id}/edition(id=${clients.idPersonne})}"><button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAUX'',''DIR-COM'')')}"  type="button">Modifier</button></a>
+            <a data-th-href="@{/clients/{id}/edition(id=${clients.idPersonne})}"><button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}"  type="button">Modifier</button></a>
             <a data-th-href="@{/clients/{id}/suppression(id=${clients.idPersonne})}"><button th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" type="button">Supprimer</button></a>
 
 
@@ -53,7 +53,7 @@
                     </tr>
                 </tbody>
             </table><a th:href="@{'/commandes/' + ${clients.idPersonne} + '/creer'}">
-            <button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAUX'',''DIR-COM'')')}" type="button">Créer une commande</button>
+            <button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}" type="button">Créer une commande</button>
         </a>
 
 
