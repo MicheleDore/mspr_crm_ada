@@ -8,7 +8,9 @@
             <li><a href="/produits">Produits</a></li>
             <li><a href="/clients">Clients</a></li>
             <li><a href="/commandes">Commandes</a></li>
-            <li><a id="statistiques" href="#">Statistiques</a></li>
+            <li> <a th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" class="action" href="/statistiques">Statistiques</a></li>
+
+
         </ul>
     </nav>
 <script>
