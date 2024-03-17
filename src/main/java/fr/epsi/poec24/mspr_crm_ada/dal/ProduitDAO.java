@@ -15,5 +15,5 @@ public interface ProduitDAO extends JpaRepository<Produit, Integer> {
             "WHERE p.enCatalogue=true " +
             "GROUP BY p.idProduit " +
             "ORDER BY 2 DESC")
-    public List<Object[]> findByEnCatalogue();
+    List<Object[]> findByEnCatalogue();
 }

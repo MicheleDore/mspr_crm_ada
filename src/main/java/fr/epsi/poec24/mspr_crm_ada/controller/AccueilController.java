@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 @Controller
 public class AccueilController {
 
-    private EmployeService service4;
+    private final EmployeService service4;
 
     @Autowired
     public AccueilController(EmployeService service4) {
@@ -25,7 +25,6 @@ public class AccueilController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nomUtilisateur = auth.getName(); // Récupère le nom d'utilisateur
         Employe employe = service4.findByMailPro(nomUtilisateur);
-
         model.addAttribute("employe", employe);
         return "index";
     }

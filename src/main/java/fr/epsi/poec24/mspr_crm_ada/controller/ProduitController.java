@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/produits")
 public class ProduitController {
-    private ProduitService service;
+    private final ProduitService service;
 
     @Autowired
     public ProduitController(ProduitService service) {
@@ -23,7 +23,6 @@ public class ProduitController {
     public String afficherListeProduit(Model model) {
         List<Object[]> mesProduits = service.findByEnCatalogue();
         model.addAttribute("produits", mesProduits);
-        System.out.println(mesProduits);
         return "view-produits-list";
     }
 
@@ -41,7 +40,6 @@ public class ProduitController {
     @GetMapping("/{id}/edition")
     public String modifierproduits(@PathVariable int id, Model model) {
         model.addAttribute("produits", service.findById(id));
-        System.out.println(model);
         return "view-produit-form-edition";
     }
     @PostMapping("/{id}/edition")
@@ -54,15 +52,11 @@ public class ProduitController {
     public String modifierprix(@PathVariable int id, Model model) {
         model.addAttribute("produits", service.findById(id));
         service.outOfCatalogue(id);
-        System.out.println(model);
         return "view-prix-form-edition";
     }
     @PostMapping("/edition-prix")
     public String modifierPrix(@ModelAttribute Produit produit) {
-        System.out.println("check");
-        System.out.println(produit);
         service.create(produit);
-        System.out.println(produit);
         return "view-produit-detail";
     }
 

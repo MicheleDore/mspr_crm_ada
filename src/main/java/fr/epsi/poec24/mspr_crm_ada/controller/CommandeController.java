@@ -19,12 +19,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/commandes")
 public class CommandeController {
-    private CommandeService commandeService;
-    private ContenuCommandeService contenuCommandeService;
+    private final CommandeService commandeService;
+    private final ContenuCommandeService contenuCommandeService;
 
-    private ProduitService produitService;
+    private final ProduitService produitService;
 
-    private EmployeService employeService;
+    private final EmployeService employeService;
 
 
 

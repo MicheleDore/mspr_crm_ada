@@ -15,8 +15,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/clients")
 public class ClientController {
-    private ClientService service;
-    private CommandeService service2;
+    private final ClientService service;
+    private final CommandeService service2;
 
 
     @Autowired
@@ -24,10 +24,8 @@ public class ClientController {
 
     @GetMapping
     public String afficherListeClient(Model model){
-
         List<Client> mesClients = service.findAll();
         model.addAttribute("clients", mesClients);
-        System.out.println(mesClients);
         return "view-clients-list";
     }
 
@@ -46,12 +44,10 @@ public class ClientController {
     @GetMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, Model model) {
         model.addAttribute("clients", service.findById(id));
-        System.out.println(model);
         return "view-clients-form-edition";
     }
     @PostMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, @ModelAttribute Client client) {
-        System.out.println(client);
         client.setIdPersonne(id);
         service.update(client);
         return "redirect:/clients/{id}/detail";
@@ -68,7 +64,6 @@ public class ClientController {
     public String detailClient(@PathVariable int id, Model model) {
         model.addAttribute("clients", service.findById(id));
         model.addAttribute("commandes", service2.findListeCommancebyid(id));
-        System.out.println(model);
         return "view-clients-detail";
     }
 
