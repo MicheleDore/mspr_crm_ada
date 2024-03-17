@@ -116,7 +116,6 @@ public class CommandeController {
     public List<Produit> getAllProducts() {
         return produitService.findAll();
     }
-    // Méthode pour générer le numéro de commande unique
 
 
 }
