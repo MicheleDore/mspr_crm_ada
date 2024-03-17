@@ -31,7 +31,7 @@
                             <td><a data-th-href="@{/commandes/{id}/detail(id=${item[0].idCommande})}" th:text="${item[0].getIdCommande}"></a></td>
                             <td data-th-text="${#dates.format(item[0].dateCommande, 'dd/MM/yyyy')}"></td>
                             <td data-th-text="${item[0].getEmploye().getNom()}"></td>
-                            <td data-th-text="${item[0].getClient().getNom()}"></td>
+                            <td data-th-text="${item[0].getClient() != null ? item[0].getClient().getNom() : 'N/A'}"></td>
                             <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
                         </tr>
                     </tbody>
