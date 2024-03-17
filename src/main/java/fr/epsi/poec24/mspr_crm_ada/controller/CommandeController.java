@@ -19,38 +19,38 @@ import java.util.List;
 @Controller
 @RequestMapping("/commandes")
 public class CommandeController {
-    private CommandeService service;
-    private ContenuCommandeService service2;
+    private CommandeService commandeService;
+    private ContenuCommandeService contenuCommandeService;
 
-    private ProduitService servive3;
+    private ProduitService produitService;
 
-    private EmployeService service4;
+    private EmployeService employeService;
 
 
 
 
     @Autowired
-    public CommandeController(CommandeService service, ContenuCommandeService service2,ProduitService service3, EmployeService service4) {
-        this.service = service;
-        this.service2 = service2;
-        this.servive3 = service3;
-        this.service4 = service4;
+    public CommandeController(CommandeService commandeService, ContenuCommandeService contenuCommandeService, ProduitService service3, EmployeService employeService) {
+        this.commandeService = commandeService;
+        this.contenuCommandeService = contenuCommandeService;
+        this.produitService = service3;
+        this.employeService = employeService;
     }
 
 
     @GetMapping("/{id}/detail")
     public String detailCommande(@PathVariable int id,Model model) {
-        model.addAttribute("commande", service.findById(id));
-        model.addAttribute("valeur", service.findCommandeValeurbyid(id));
-        model.addAttribute("contenu", service2.findcontenuCommandebyid(id));
-        System.out.println(model.addAttribute("contenu", service2.findcontenuCommandebyid(id)));
+        model.addAttribute("commande", commandeService.findById(id));
+        model.addAttribute("valeur", commandeService.findCommandeValeurbyid(id));
+        model.addAttribute("contenu", contenuCommandeService.findcontenuCommandebyid(id));
+        System.out.println(model.addAttribute("contenu", contenuCommandeService.findcontenuCommandebyid(id)));
 
         return "view-commande-detail";
     }
     @GetMapping
     public String afficherListeCommande(Model model) {
 
-        List<Object[]> mesCommandes= service.findListeCommande();
+        List<Object[]> mesCommandes= commandeService.findListeCommande();
         model.addAttribute("commandes", mesCommandes);
         System.out.println(model.addAttribute("commandes", mesCommandes));
         return "view-commandes-list";
@@ -63,49 +63,59 @@ public class CommandeController {
         return "view-commande-form-creation";
     }
     @PostMapping("/{id}/creer")
-    public String creerCommande(@PathVariable int id,@ModelAttribute Commande commande, @RequestParam ("quantite") Integer[] quantites,@RequestParam ("nomProduit") Integer[] produits) {
+    public String creerCommande(@PathVariable int id, // Récupère l'ID à partir de l'URL
+                                @ModelAttribute Commande commande, // Lie les données du formulaire à un objet Commande
+                                @RequestParam("quantite") Integer[] quantites, // Récupère les quantités des produits depuis le formulaire
+                                @RequestParam("nomProduit") Integer[] produits) { // Récupère les identifiants des produits depuis le formulaire
 
-
-        commande.getIdCommande();
-        // Créez la liste de contenuCommandes à partir des quantités et des produits
+        // Création d'une liste de ContenuCommande à partir des quantités et des produits
         List<ContenuCommande> contenuCommandes = new ArrayList<>();
-
         for (int i = 0; i < quantites.length; i++) {
             ContenuCommande contenuCommande = new ContenuCommande();
 
-            // Vous devez définir la logique pour récupérer le Produit en fonction du nom (produits[i])
-            Produit produit = servive3.findById(produits[i]); // À adapter à votre logique
+            // Récupération du Produit en fonction de son identifiant (produits[i])
+            Produit produit = produitService.findById(produits[i]);
+
+            // Initialisation des attributs du ContenuCommande
             contenuCommande.setCommande(commande);
             contenuCommande.setProduit(produit);
             contenuCommande.setQuantite(quantites[i]);
-            // Assurez-vous de définir la relation bidirectionnelle
-            contenuCommande.setCommande(commande);
+            contenuCommande.setCommande(commande); //  relation bidirectionnelle
             contenuCommandes.add(contenuCommande);
         }
-        // Récupérer les informations de l'utilisateur connecté
+
+        // Récupération des informations de l'utilisateur connecté
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nomUtilisateur = auth.getName(); // Récupère le nom d'utilisateur
-        // Utilisez le nom d'utilisateur pour obtenir l'employé correspondant
-        Employe employe = service4.findByMailPro(nomUtilisateur);
+
+        // Récupération de l'employé correspondant au nom d'utilisateur
+        Employe employe = employeService.findByMailPro(nomUtilisateur);
+
+        // Définition de l'employé pour cette commande
         commande.setEmploye(employe);
+
+        // Définition de la liste des contenus de commande pour cette commande
         commande.setContenuCommandes(contenuCommandes);
 
-
-        commande.setEmploye(employe);
-        // Ajouter la date du jour à la commande
+        // Ajout de la date du jour à la commande
         commande.setDateCommande(new Date());
-        // Ajouter l'ID du client à la commande
+
+        // Création d'un objet Client avec l'ID spécifié et association avec la commande
         Client client = new Client();
         client.setIdPersonne(id);
         commande.setClient(client);
-        service.create(commande);
+
+        // Enregistrement de la commande en utilisant le service commandeService
+        commandeService.create(commande);
+
+        // Redirection vers la page de détail du client avec l'ID spécifié
         return "redirect:/clients/{id}/detail";
     }
+
     @ModelAttribute("listeProduits")
     public List<Produit> getAllProducts() {
-        return servive3.findAll();
+        return produitService.findAll();
     }
-    // Méthode pour générer le numéro de commande unique
 
 
 }
