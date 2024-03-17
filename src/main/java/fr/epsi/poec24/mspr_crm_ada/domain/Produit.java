@@ -2,9 +2,9 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,15 +28,21 @@ public class Produit implements Serializable{
     @Column(name="DateCreationProduit")
     private Date dateCreationProduit =  Date.from(Instant.now());
 
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<ContenuCommande> contenuCommandes;
+
+
     @Column(name="EnCatalogue")
     private boolean enCatalogue= true;
 
+//CONSTRUCTOR
     @Column(name="DateSuppressionProduit")
     private Date dateSuppressionProduit= null;
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ContenuCommande> contenuCommande;
     //CONSTRUCTOR
+
 
     public Produit() {
        // this(0, "", 0, "", new Date()); // Vous pouvez ajuster les valeurs par défaut selon vos besoins
@@ -54,6 +60,14 @@ public class Produit implements Serializable{
     }
 
 //GETTER & SETTER
+
+    public List<ContenuCommande> getContenuCommandes() {
+        return contenuCommandes;
+    }
+
+    public void setContenuCommandes(List<ContenuCommande> contenuCommandes) {
+        this.contenuCommandes = contenuCommandes;
+    }
 
     public int getIdProduit() {return idProduit;}
     public void setIdProduit(int idProduit) {this.idProduit = idProduit;}
@@ -119,5 +133,7 @@ public class Produit implements Serializable{
         sb.append(", dateSuppressionProduit=").append(dateSuppressionProduit);
         sb.append('}');
         return sb.toString();
+
+
     }
 }

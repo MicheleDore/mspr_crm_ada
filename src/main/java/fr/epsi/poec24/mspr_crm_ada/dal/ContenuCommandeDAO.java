@@ -10,5 +10,5 @@ import java.util.List;
 public interface ContenuCommandeDAO extends JpaRepository<ContenuCommande, Integer> {
 
     @Query(value = "select * from contenucommandes cc WHERE cc.ID_commande = :id",nativeQuery = true)
-    public List<ContenuCommande> findContenuCommande(@Param("id")int id);
+     List<ContenuCommande> findContenuCommande(@Param("id")int id);
 }

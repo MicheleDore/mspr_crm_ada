@@ -22,7 +22,7 @@
                     <li><label for="inputNumero">Numero de commande : </label> <input disabled
                                                                         type="text" id="inputNumero" data-th-value="${commande.idCommande}"></li>
                     <li><label for="inputClient">Client : </label> <input disabled
-                                                                                  type="text" id="inputClient" data-th-value="${commande.getClient().getNom()}">
+                                                                                  type="text" id="inputClient" data-th-value="${commande.getClient() != null ? commande.getClient().getNom() : 'N/A'}">
                     </li>
                     <li><label for="inputEmploye">Employé : </label> <input
                             disabled type="text" id="inputEmploye"
