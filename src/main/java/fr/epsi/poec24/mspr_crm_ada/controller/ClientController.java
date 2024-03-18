@@ -24,7 +24,8 @@ public class ClientController {
 
     @GetMapping
     public String afficherListeClient(Model model){
-        List<Client> mesClients = service.findAll();
+
+        List<Object[]> mesClients = service.findListeClientValeur();
         model.addAttribute("clients", mesClients);
         return "view-clients-list";
     }
@@ -48,6 +49,7 @@ public class ClientController {
     }
     @PostMapping("/{id}/edition")
     public String modifierClient(@PathVariable int id, @ModelAttribute Client client) {
+        System.out.println(client);
         client.setIdPersonne(id);
         service.update(client);
         return "redirect:/clients/{id}/detail";
@@ -64,6 +66,7 @@ public class ClientController {
     public String detailClient(@PathVariable int id, Model model) {
         model.addAttribute("clients", service.findById(id));
         model.addAttribute("commandes", service2.findListeCommancebyid(id));
+        System.out.println(model);
         return "view-clients-detail";
     }
 
