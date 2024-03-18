@@ -2,11 +2,9 @@ package fr.epsi.poec24.mspr_crm_ada.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity

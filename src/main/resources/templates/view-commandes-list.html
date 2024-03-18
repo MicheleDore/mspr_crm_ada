@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8"/>
-        <link rel="icon" data-th-href="@{/img/logoAcme.png}" sizes="32x32"/>
+        <link rel="icon" data-th-href="@{/img/epsi.png}" sizes="32x32"/>
         <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
@@ -31,7 +31,8 @@
                             <td><a data-th-href="@{/commandes/{id}/detail(id=${item[0].idCommande})}" th:text="${item[0].getIdCommande}"></a></td>
                             <td data-th-text="${#dates.format(item[0].dateCommande, 'dd/MM/yyyy')}"></td>
                             <td data-th-text="${item[0].getEmploye().getNom()}"></td>
-                            <td data-th-text="${item[0].getClient() != null ? item[0].getClient().getNom() : 'Client spprimé'}"></td>                            <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
+                            <td data-th-text="${item[0].getClient() != null ? item[0].getClient().getNom() : 'N/A'}"></td>
+                            <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
                         </tr>
                     </tbody>
                 </table>

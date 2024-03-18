@@ -26,7 +26,6 @@ public class StatistiquesController {
         model.addAttribute("total", total);
         model.addAttribute("CA", mesCA);
         model.addAttribute("annees", annees);
-        System.out.println(mesCA);
         return "view-statistiques";
     }
 }

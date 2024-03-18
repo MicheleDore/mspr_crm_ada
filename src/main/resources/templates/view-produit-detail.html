@@ -15,32 +15,23 @@
             <nav th:replace="~{fragments/navbar}"></nav>
         </header>
         <main>
-            <form>
                 <h1>Détail du Produit</h1>
                 <ul class="flex-outer">
-                    <li><label for="inputId">ID : </label> <input disabled
-                                                                        type="text" id="inputId" data-th-value="${produit.idProduit}">
-                    </li>
-                    <li><label for="inputNom">Produit : </label> <input disabled
-                                                                       type="text" id="inputNom" data-th-value="${produit.nomProduit}"></li>
-                    <li><label for="taDescription">Description : </label> <textarea
-                            rows="3" id="taDescription" disabled data-th-text="${produit.description}">
-						</textarea>
+                    <li>
+                        <span><h4>Produit :</h4><p data-th-text="${produit.nomProduit}"></p></span>
                     </li>
                     <li>
-                        <label for="inputDate">Date de création : </label>
-                        <input disabled type="text" id="inputDate" data-th-value="${#dates.format(produit.dateCreationProduit, 'dd/MM/yyyy')}">
-                    </li>
-                    </li>
-                    <li><label for="inputPrix">Prix : </label> <input
-                            disabled type="text" id="inputPrix"
-                            data-th-value="${produit.prix}">
+                        <span><h4>Description :</h4><p data-th-text="${produit.description}"></p></span>
                     </li>
                     <li>
-                        Nombre de ventes : <span th:text="${param.quantite}"></span>
+                        <span><h4>Date de création :</h4><p data-th-text="${#dates.format(produit.dateCreationProduit, 'dd/MM/yyyy')}"></p></span>
+                    </li>
+                    <li>
+                        <span><h4>Prix :</h4><p data-th-text="${produit.prix}"></p></span>
+                    </li>
+                    <h4>Nombre de ventes : </h4><span th:text="${param.quantite}"></span>
                     </li>
                 </ul>
-            </form>
             <a data-th-href="@{/produits/{id}/edition(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Modifier</button></a>
             <a data-th-href="@{/produits/{id}/edition-prix(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Changement de prix</button></a>
             <a data-th-href="@{/produits/{id}/suppression(id=${produit.idProduit})}"><button th:if="${#authorization.expression('hasAnyRole(''RES-CAT'')')}" type="button">Supprimer</button></a>

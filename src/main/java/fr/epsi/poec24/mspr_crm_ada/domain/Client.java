@@ -15,7 +15,7 @@ import java.util.Date;
 public class Client extends Personne implements Serializable{
 
     @Column (name="Date_Enregistrement")
-    private Date dateEnregistrement =  Date.from(Instant.now());
+    private final Date dateEnregistrement =  Date.from(Instant.now());
 
 
 
@@ -28,27 +28,17 @@ public class Client extends Personne implements Serializable{
         super(idPersonne, nom, prenom, cp, ville, rue, tel, mail);
     }
 
-
-
-    //GETTER & SETTER
-
-    public Date getDateEnregistrement() {return dateEnregistrement;}
-    public void setDateEnregistrement(Date dateEnregistrement) {this.dateEnregistrement = dateEnregistrement;}
-
-
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Client{");
-        sb.append("dateEnregistrement=").append(dateEnregistrement);
-        sb.append(", idPersonne=").append(idPersonne);
-        sb.append(", nom='").append(nom).append('\'');
-        sb.append(", prenom='").append(prenom).append('\'');
-        sb.append(", cp='").append(cp).append('\'');
-        sb.append(", ville='").append(ville).append('\'');
-        sb.append(", rue='").append(rue).append('\'');
-        sb.append(", tel='").append(tel).append('\'');
-        sb.append(", mail='").append(mail).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Client{" + "dateEnregistrement=" + dateEnregistrement +
+                ", idPersonne=" + idPersonne +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", cp='" + cp + '\'' +
+                ", ville='" + ville + '\'' +
+                ", rue='" + rue + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
     }
 }

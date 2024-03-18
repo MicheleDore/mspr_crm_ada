@@ -9,16 +9,7 @@
         <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
 
         <title>Détails des clients</title>
-<!--        <script>-->
-<!--            function toggleForm() {-->
-<!--                var form = document.getElementById("myForm");-->
-<!--                if (form.style.display === "none") {-->
-<!--                    form.style.display = "block";-->
-<!--                } else {-->
-<!--                    form.style.display = "none";-->
-<!--                }-->
-<!--            }-->
-<!--        </script>-->
+
     </head>
     <body>
         <header>
@@ -26,17 +17,23 @@
         </header>
         <main>
             <h1>Détails du client</h1>
+            <br>
             <h2 data-th-text="${clients.nom}"></h2>
             <p data-th-text="${clients.prenom}"></p>
+            <br>
+            <h3>Adresse :</h3>
             <p data-th-text="${clients.rue}"></p>
             <p data-th-text="${clients.cp}"></p>
             <p data-th-text="${clients.ville}"></p>
+            <br>
+            <h3>Contacts :</h3>
             <p data-th-text="${clients.tel}"></p>
             <p data-th-text="${clients.mail}"></p>
-            <a data-th-href="@{/clients/{id}/edition(id=${clients.idPersonne})}"><button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}"  type="button">Modifier</button></a>
-            <a data-th-href="@{/clients/{id}/suppression(id=${clients.idPersonne})}"><button th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}" type="button">Supprimer</button></a>
-
-
+            <br>
+            <a class="action" data-th-href="@{/clients/{id}/edition(id=${clients.idPersonne})}" th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}">Modifier</a>
+            <a class="action" data-th-href="@{/clients/{id}/suppression(id=${clients.idPersonne})}" th:if="${#authorization.expression('hasAnyRole(''DIR-COM'')')}">Supprimer</button></a>
+            <br>
+            <br>
             <table>
                 <thead>
                     <tr>
@@ -52,15 +49,9 @@
                         <td data-th-text="${item[1]}"></td> <!-- Affiche la valeur pour chaque commande -->
                     </tr>
                 </tbody>
-            </table><a th:href="@{'/commandes/' + ${clients.idPersonne} + '/creer'}">
-            <button th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}" type="button">Créer une commande</button>
-        </a>
-
-
-            <!--            <button onclick="toggleForm()">Modifier client</button>-->
-<!--            <div id="myForm" style="display: none;">-->
-<!--                <div  th:replace="~{fragments/form-client}"></div>-->
-<!--            </div>-->
+            </table>
+            <br>
+            <a class="action" th:href="@{'/commandes/' + ${clients.idPersonne} + '/creer'}" th:if="${#authorization.expression('hasAnyRole(''COMMERCIAL'',''DIR-COM'')')}"> Créer une commande</a>
         </main>
         <footer>
             <p>&copy; EPSI POEC - Tous droits réservés</p>

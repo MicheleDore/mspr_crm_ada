@@ -4,17 +4,15 @@ import fr.epsi.poec24.mspr_crm_ada.dal.ProduitDAO;
 import fr.epsi.poec24.mspr_crm_ada.domain.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class ProduitService {
 
-    private ProduitDAO dao;
+    private final ProduitDAO dao;
 
     @Autowired
     public ProduitService(ProduitDAO dao){ this.dao = dao;}

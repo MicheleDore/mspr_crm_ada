@@ -19,12 +19,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/commandes")
 public class CommandeController {
-    private CommandeService commandeService;
-    private ContenuCommandeService contenuCommandeService;
+    private final CommandeService commandeService;
+    private final ContenuCommandeService contenuCommandeService;
 
-    private ProduitService produitService;
+    private final ProduitService produitService;
 
-    private EmployeService employeService;
+    private final EmployeService employeService;
 
 
 
@@ -43,8 +43,6 @@ public class CommandeController {
         model.addAttribute("commande", commandeService.findById(id));
         model.addAttribute("valeur", commandeService.findCommandeValeurbyid(id));
         model.addAttribute("contenu", contenuCommandeService.findcontenuCommandebyid(id));
-        System.out.println(model.addAttribute("contenu", contenuCommandeService.findcontenuCommandebyid(id)));
-
         return "view-commande-detail";
     }
     @GetMapping
@@ -52,7 +50,6 @@ public class CommandeController {
 
         List<Object[]> mesCommandes= commandeService.findListeCommande();
         model.addAttribute("commandes", mesCommandes);
-        System.out.println(model.addAttribute("commandes", mesCommandes));
         return "view-commandes-list";
     }
 
