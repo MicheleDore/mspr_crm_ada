@@ -23,7 +23,7 @@ public class ContenuCommande implements Serializable {
     private Produit produit;
 
     @Column(name = "Quantite")
-    private int quantite;
+    private int quantite =0;
 
     public ContenuCommande() {
     }

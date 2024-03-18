@@ -11,13 +11,14 @@ import java.util.List;
 public interface ClientDAO extends JpaRepository<Client, Integer> {
 
 
-    @Query("SELECT clients, COALESCE(SUM(p.prix * cc.quantite), 0) AS MontantTotal " +
+    @Query("SELECT clients, COALESCE(SUM(p.prix * cc.quantite),0) AS MontantTotal " +
             "FROM Commande c " +
-            "JOIN c.contenuCommandes cc " +
-            "JOIN cc.produit p " +
-            "JOIN c.client clients " +
+            " left JOIN c.contenuCommandes cc "  +
+            " left JOIN cc.produit p " +
+            " right JOIN c.client clients " +
             "GROUP BY clients.idPersonne, clients.dateEnregistrement " +
             "ORDER BY 2  DESC")
+
     public List<Object[]> findListeClientValeur();
 
 
