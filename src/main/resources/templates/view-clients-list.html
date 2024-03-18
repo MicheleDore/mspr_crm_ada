@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" data-th-href="@{/img/img.png}" sizes="32x32"/>
+    <link rel="icon" data-th-href="@{/img/logoAcme.png}" sizes="32x32"/>
     <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
     <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
     <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
@@ -24,14 +24,16 @@
                 <th>Code postal</th>
                 <th>Téléphone</th>
                 <th>Email</th>
+                <th>Montant total des commandes</th>
             </tr>
           </thead>
           <tbody>
             <tr data-th-each="item : ${clients}">
-              <td><a data-th-href="@{/clients/{id}/detail(id=${item.idPersonne})}" th:text='${item.nom +" "+item.prenom}'></a></td>
-              <td data-th-text="${item.cp}"></td>
-              <td data-th-text="${item.tel}"></td>
-              <td data-th-text="${item.mail}"></td>
+              <td><a data-th-href="@{/clients/{id}/detail(id=${item[0].idPersonne})}" th:text='${item[0].nom +" "+item[0].prenom}'></a></td>
+              <td data-th-text="${item[0].cp}"></td>
+              <td data-th-text="${item[0].tel}"></td>
+              <td data-th-text="${item[0].mail}"></td>
+              <td data-th-text="${item[1]}"></td>
             </tr>
           </tbody>
         </table>

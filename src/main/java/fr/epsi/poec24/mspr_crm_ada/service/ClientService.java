@@ -28,6 +28,10 @@ public class ClientService {
 
     public Client findById(int id) {return dao.findById(id).orElse(null);}
 
+    public List<Object[]> findListeClientValeur() {
+        return dao.findListeClientValeur();
+    }
+
     public void update(Client client) {
         dao.save(client);
         System.out.println(client);

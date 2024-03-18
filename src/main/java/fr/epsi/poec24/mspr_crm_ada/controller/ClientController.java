@@ -25,7 +25,7 @@ public class ClientController {
     @GetMapping
     public String afficherListeClient(Model model){
 
-        List<Client> mesClients = service.findAll();
+        List<Object[]> mesClients = service.findListeClientValeur();
         model.addAttribute("clients", mesClients);
         System.out.println(mesClients);
         return "view-clients-list";

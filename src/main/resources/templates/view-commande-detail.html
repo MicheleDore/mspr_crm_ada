@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8"/>
-        <link rel="icon" data-th-href="@{/img/img.png}" sizes="32x32"/>
+        <link rel="icon" data-th-href="@{/img/logoAcme.png}" sizes="32x32"/>
         <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
         <link rel="stylesheet" data-th-href="@{/css/demo-form.css}"/>
@@ -22,7 +22,7 @@
                     <li><label for="inputNumero">Numero de commande : </label> <input disabled
                                                                         type="text" id="inputNumero" data-th-value="${commande.idCommande}"></li>
                     <li><label for="inputClient">Client : </label> <input disabled
-                                                                                  type="text" id="inputClient" data-th-value="${commande.getClient().getNom()}">
+                                                                                  type="text" id="inputClient" data-th-value="${commande.getClient() != null ? commande.getClient().getNom() : 'Client spprimé'}">
                     </li>
                     <li><label for="inputEmploye">Employé : </label> <input
                             disabled type="text" id="inputEmploye"
