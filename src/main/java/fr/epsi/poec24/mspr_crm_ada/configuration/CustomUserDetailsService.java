@@ -1,7 +1,5 @@
 package fr.epsi.poec24.mspr_crm_ada.configuration;
 
-import fr.epsi.poec24.mspr_crm_ada.dal.ClientDAO;
-import fr.epsi.poec24.mspr_crm_ada.dal.EmployeDAO;
 import fr.epsi.poec24.mspr_crm_ada.domain.Employe;
 import fr.epsi.poec24.mspr_crm_ada.service.EmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
